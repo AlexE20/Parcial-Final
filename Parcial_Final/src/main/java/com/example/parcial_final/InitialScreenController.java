@@ -33,7 +33,11 @@ public class InitialScreenController {
 
     @FXML
     protected void onReportA_Click(ActionEvent event)throws IOException {//Método para cambiar a la escena del reporte A
-       // Parent root = FXMLLoader.load(getClass().getResource("reportC-view.fxml"));
+        try{
+            root = FXMLLoader.load(getClass().getResource("reportA-view.fxml"));
+        }catch(NullPointerException e){
+            e.printStackTrace();
+        }
         stage =(Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
