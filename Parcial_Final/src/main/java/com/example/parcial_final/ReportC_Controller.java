@@ -29,3 +29,4 @@ public class ReportC_Controller {
         stage.show();
     }
 }
+
