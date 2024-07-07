@@ -12,6 +12,4 @@
    <Button fx:id="btnReportB" mnemonicParsing="false" onAction="#onReportB_Click" text="Reporte B" />
    <Button fx:id="btnReportC" mnemonicParsing="false" onAction="#onReportC_Click" text="Reporte C" />
    <Button fx:id="btnReportD" mnemonicParsing="false" onAction="#onReportD_Click" text="Reporte D" />
-
-    <Label fx:id="welcomeText" />
 </VBox>
