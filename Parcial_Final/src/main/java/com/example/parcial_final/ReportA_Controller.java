@@ -1,10 +1,17 @@
 package com.example.parcial_final;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -12,6 +19,13 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ReportA_Controller implements Initializable { //Implementing the interface Initializable
+
+    private Parent root;//00080323 Ventana padre.
+    private Stage stage;
+    private Scene scene;
+    @FXML
+    private Button btnReturn;//00080323 Button to return to the home window.
+
     @FXML
     private TextField txtClientId; //Declares a text field linked to the fxml to input the client's id
 
@@ -56,7 +70,7 @@ public class ReportA_Controller implements Initializable { //Implementing the in
     private ArrayList<Transaction> getTransactions(int clientId, LocalDate initialDate, LocalDate finalDate) {
         ArrayList<Transaction> transactions = new ArrayList<>(); //A new arraylist of Transactions is declared
         try { //Tries to excecute the following block of code
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!"); //Establishes the connection to the database
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004"); //Establishes the connection to the database
             PreparedStatement pst = conn.prepareStatement( //Prepares the SQL statement to retrieve transactions through a query
                             "SELECT t.transaction_date, t.money_amount, t.description " + //Selects date, amount, and description fields
                             "FROM transaction t " + //From the transaction table with alias 't'
@@ -81,5 +95,19 @@ public class ReportA_Controller implements Initializable { //Implementing the in
         }
 
         return transactions; //Returns the Arraylist of transactions
+    }
+
+
+    @FXML
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException {
+        try {
+            root = FXMLLoader.load(getClass().getResource("initial-view.fxml"));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
