@@ -41,8 +41,16 @@ public class InitialScreenController {
     }
 
     @FXML
-    protected void onReportB_Click() {
-
+    protected void onReportB_Click(ActionEvent event) throws IOException{
+        try{
+            root = FXMLLoader.load(getClass().getResource("reportB-view.fxml"));
+        }catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        stage =(Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     @FXML
     protected void onReportC_Click(ActionEvent event)throws IOException {

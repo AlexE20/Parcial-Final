@@ -3,10 +3,61 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox fx:id="btnReturn" alignment="CENTER" prefHeight="496.0" prefWidth="601.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parcial_final.ReportC_Controller">
+<VBox fx:id="btnReturn" alignment="CENTER" prefHeight="400" prefWidth="600" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parcial_final.ReportC_Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Button fx:id="btnReportD" mnemonicParsing="false" onAction="#onReturnbtn_Click" text="Regresar" />
+    <children>
+        <VBox prefHeight="400.0" prefWidth="600.0">
+            <children>
+                <HBox prefHeight="50.0" prefWidth="200.0">
+                    <children>
+                        <Label text="ID Cliente">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="20.0" right="32.0" top="20.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="idClientTextField" prefWidth="390.0">
+                            <HBox.margin>
+                                <Insets top="15.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+            <Button alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#onReturnbtn_Click" text="Regresar" />
+                <Button fx:id="btnReport" mnemonicParsing="false" onAction="#generateReport" text="Generar reporte">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="20.0" top="5.0" />
+                    </VBox.margin>
+                </Button>
+                <TableView fx:id="tableCreditCards" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                        <TableColumn fx:id="colCreditCardNum" prefWidth="75.0" text="Tarjetas de Crédito" />
+                    </columns>
+                    <VBox.margin>
+                        <Insets top="8.0" />
+                    </VBox.margin>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            <TableView fx:id="tableDeditCards" layoutX="10.0" layoutY="103.0" prefHeight="200.0" prefWidth="200.0">
+               <columns>
+                  <TableColumn fx:id="colDeditCardNum" prefWidth="75.0" text="Tarjetas de Débito" />
+               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            </children>
+        </VBox>
+    </children>
 </VBox>
