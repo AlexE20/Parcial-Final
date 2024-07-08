@@ -11,11 +11,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.sql.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class ReportC_Controller {//00080323 Clase responsable de controlar la vista del reporte C.
+public class ReportC_Controller implements FileGenerator{//00080323 Clase responsable de controlar la vista del reporte C.
 
     private Parent root;//00080323 Ventana padre.
     private Stage stage;
@@ -62,6 +67,7 @@ public class ReportC_Controller {//00080323 Clase responsable de controlar la vi
 
         tableCreditCards.getItems().setAll(creditCards);
         tableDeditCards.getItems().setAll(debitCards);
+        generateFile(creditCards,debitCards);
     }
 
     private ArrayList<Card> getCards(int clientId, String cardType) {
@@ -101,4 +107,33 @@ public class ReportC_Controller {//00080323 Clase responsable de controlar la vi
         stage.setScene(scene);
         stage.show();
     }
+
+    @Override
+    public void generateFile(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        LocalDateTime now = LocalDateTime.now();
+        String path= "Parcial_Final/src/Reports/";
+        String fileName = path + "Report-C-" + dtf.format(now) + ".txt";
+
+        try (FileWriter writer = new FileWriter(fileName)) {
+            writer.write("Credit Cards:\n");
+            for (Card card : creditCards) {
+                writer.write(card.getCardNumberCensored() + "\n");
+            }
+
+            writer.write("\nDebit Cards:\n");
+            for (Card card : debitCards) {
+                writer.write(card.getCardNumberCensored() + "\n");
+            }
+
+        } catch (IOException e) {
+            System.out.println("An error occurred while generating the report file: " + e.getMessage());
+        }
+
+
+
+
+    }
+
+
 }
