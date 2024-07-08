@@ -15,9 +15,9 @@ import java.sql.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ReportC_Controller {
+public class ReportC_Controller {//00080323 Clase responsable de controlar la vista del reporte C.
 
-    private Parent root;
+    private Parent root;//00080323 Ventana padre.
     private Stage stage;
     private Scene scene;
 
