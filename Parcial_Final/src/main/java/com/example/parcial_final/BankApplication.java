@@ -10,9 +10,11 @@ import java.io.IOException;
 public class BankApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(BankApplication.class.getResource("initial-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Bank Aplication");
+
         stage.setScene(scene);
         stage.show();
     }
