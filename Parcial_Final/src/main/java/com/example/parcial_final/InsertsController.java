@@ -83,11 +83,13 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     private ObservableList<Integer> getFacilitatorIds() {
-        String query = "SELECT id_facilitator FROM facilitator"; //00005923 Es un SELECT que escoge los ids de la tabla Facilitador
+        String query = "SELECT id_facilitator FROM facilitator"; //00005923 Es un SELECT que escoge los ids de la tabla Facilitador //00005923 Inicia la conexion con la Base de datos
         ObservableList<Integer> facilitatorIds = FXCollections.observableArrayList(); //00005923 Es una lista que guardara dentro de una ObservableList
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); //00005923 Inicia la conexion con la Base de datos
-             Statement st = conn.createStatement(); //00005923 Crea un declaracion que sera usada para generar un resultado
-             ResultSet rs = st.executeQuery(query)) { //00005923 Executa el resultado y guarda los valores que la Query selecciono
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123");
+            Statement st = conn.createStatement(); //00005923 Crea un declaracion que sera usada para generar un resultado
+            ResultSet rs = st.executeQuery(query);  //00005923 Executa el resultado y guarda los valores que la Query selecciono
+
             while (rs.next()) { //00005923 Mientras haya un siguiente la ObservalbeList seguira guardando atributos
                 facilitatorIds.add(rs.getInt("id_facilitator")); //00005923 Agrega la ObservableList por medio de la columna
             }
