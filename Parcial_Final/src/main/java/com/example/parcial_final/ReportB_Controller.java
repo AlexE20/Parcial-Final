@@ -3,14 +3,30 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 public class ReportB_Controller implements Initializable {
+
+    private Parent root;//00080323 Es el nodo ruta del archivo FXML.
+    private Stage stage;//00080323 Es la ventana de la aplicación
+    private Scene scene;//00080323 Es el contenido adentro de la ventana, es decir lo que cambia dinámicamente.
+    @FXML
+    private Button returnBtn;//00080323 Botón para retornar a la ventana principal.
+
     //Texto para ingresar el id del cliente
     @FXML
     private TextField txtIdClient;
@@ -70,6 +86,7 @@ public class ReportB_Controller implements Initializable {
         } catch (Exception e) { // Si no logra conectarse a la base , atrapa al error
             showErrorAlert("Error al conectarse a la base: " + e.getMessage()); //Muestra un mensaje de error si no se conecta a la base
         }
+        generateFile();
 
     }
 
@@ -79,5 +96,41 @@ public class ReportB_Controller implements Initializable {
         alert.setHeaderText("Se ha producido un error!"); //Le asigna el mensaje
         alert.setContentText(message);//Si hay algun mensaje contexto por ejemplo uno de SQL, lo manda a llamar de esta manera
         alert.showAndWait();// Cuando la alerta aparece espera a que el usuario precione el boton:
+    }
+
+    public void generateFile() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
+        LocalDateTime now = LocalDateTime.now();
+        String path = "Parcial_Final/src/Reports/";
+        String fileName = path + "Report-B-" + dtf.format(now) + ".txt";
+
+        try (FileWriter writer = new FileWriter(fileName)) {
+            ObservableList<Report> reportList = tvReport.getItems();
+
+            if (reportList.isEmpty()) {
+                writer.write("No data available\n");
+            } else {
+                for (Report report : reportList) {
+                    writer.write("Client: " + report.getClientName() + ", Ammount: " + report.getAmountOfMoney() + "\n");
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    @FXML
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException {//Método para retornar a la ventana principal.
+        try {
+            root = FXMLLoader.load(getClass().getResource("initial-view.fxml"));//00080323 Cargamos la pantalla inicial.
+        } catch (NullPointerException e) {//00080323 Manejamos la exepción.
+            e.printStackTrace();// 00080323 Imprimimos exepción.
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();//00080323 Método para  obtener la ventana actual.
+        scene = new Scene(root);// 00080323 Instanciamos una nueva escena .
+        stage.setScene(scene);//00080323 Cambiamos la escena de la ventana.
+        stage.show();//00080323 Mostramos nueva escena en la ventana.
     }
 }
