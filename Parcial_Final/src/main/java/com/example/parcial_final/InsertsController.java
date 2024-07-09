@@ -85,7 +85,7 @@ public class InsertsController implements Initializable { // Define la clase pri
     private ObservableList<Integer> getFacilitatorIds() {
         String query = "SELECT id_facilitator FROM facilitator"; //00005923 Es un SELECT que escoge los ids de la tabla Facilitador
         ObservableList<Integer> facilitatorIds = FXCollections.observableArrayList(); //00005923 Es una lista que guardara dentro de una ObservableList
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); //00005923 Inicia la conexion con la Base de datos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); //00005923 Inicia la conexion con la Base de datos
              Statement st = conn.createStatement(); //00005923 Crea un declaracion que sera usada para generar un resultado
              ResultSet rs = st.executeQuery(query)) { //00005923 Executa el resultado y guarda los valores que la Query selecciono
             while (rs.next()) { //00005923 Mientras haya un siguiente la ObservalbeList seguira guardando atributos
@@ -104,7 +104,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return; // Sale del método 00009423
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos  00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos  00009423
             PreparedStatement st = conn.prepareStatement("INSERT INTO card (card_number, expiration_date, card_type, id_facilitator, id_client) VALUES (?, ?, ?, ?, ?)"); // Prepara la consulta SQL  00009423
             st.setString(1, txtCardNumber.getText()); // Establece el número de tarjeta  00009423
             st.setDate(2, Date.valueOf(dpCard.getValue())); // Establece la fecha de expiración por medio del date picker 00005923
@@ -130,7 +130,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return; // Sale del método
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos  00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos  00009423
             PreparedStatement st = conn.prepareStatement("INSERT INTO client (client_first_name, client_last_name, client_direction, client_phone_number) VALUES (?, ?, ?, ?)"); // Prepara la consulta SQL  00009423
             st.setString(1, txtFirstName.getText()); // Establece el nombre del cliente  00009423
             st.setString(2, txtLastname.getText()); // Establece el apellido del cliente  00009423
@@ -155,7 +155,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return; // Sale del método 00009423
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos 00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos 00009423
             PreparedStatement st = conn.prepareStatement("INSERT INTO transaction (money_amount, description, id_card, transaction_date) VALUES (?, ?, ?, ?)"); // Prepara la consulta SQL  00009423
             st.setDouble(1, Double.parseDouble(txtMoneyAmount.getText())); // Establece la cantidad de dinero 00009423
             st.setString(2, txtDesc.getText()); // Establece la descripción 00009423
@@ -180,7 +180,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return; // Sale del método
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos 00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos 00009423
             PreparedStatement st = conn.prepareStatement("UPDATE client SET client_first_name = ?, client_last_name = ?, client_direction = ?, client_phone_number = ? WHERE id_client = ?;"); // Prepara la consulta SQL 00009423
             st.setString(1, txtFirstName.getText()); // Establece el nombre del cliente 00009423
             st.setString(2, txtLastname.getText()); // Establece el apellido del cliente 00009423
@@ -206,7 +206,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return; // Sale del método  00009423
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos  00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos  00009423
             PreparedStatement st = conn.prepareStatement("UPDATE card SET card_number = ?, expiration_date = ?, card_type = ?, id_facilitator = ?,id_client=? WHERE  id_card = ?;"); // Prepara la consulta SQL  00009423
 
 
@@ -236,7 +236,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return; // Sale del método 00009423
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos 00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos 00009423
             PreparedStatement st = conn.prepareStatement("UPDATE transaction SET money_amount = ?, description = ?, id_card = ?, transaction_date = ? WHERE  id_transaction = ?;"); // Prepara la consulta SQL 00009423
 
 
@@ -264,7 +264,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return;
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123");
             PreparedStatement st = conn.prepareStatement("DELETE FROM client WHERE id_client = ?");
             st.setInt(1, Integer.parseInt(txtIdClientDel.getText()));
             try {
@@ -286,7 +286,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return;
         }
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123");
             PreparedStatement st = conn.prepareStatement("DELETE FROM card WHERE id_card = ?");
             st.setInt(1, Integer.parseInt(txtIdCardDel.getText()));
             try {
@@ -309,7 +309,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return;
         }
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123");
             PreparedStatement st = conn.prepareStatement("DELETE FROM transaction WHERE id_transaction = ?");
             st.setInt(1, Integer.parseInt(txtIdTransactionDel.getText()));
             try {
