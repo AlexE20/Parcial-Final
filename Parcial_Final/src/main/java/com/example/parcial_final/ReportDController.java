@@ -4,13 +4,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,6 +26,9 @@ import java.util.ResourceBundle;
 
 public class ReportDController implements Initializable {
 
+    private Parent root;//00080323 Ventana padre.
+    private Stage stage;
+    private Scene scene;
     @FXML
     ComboBox<String> comBoxFacilitator; //Declaration of a ComboBox attribute to select the type of Facilitator.
     @FXML
@@ -58,7 +67,7 @@ public class ReportDController implements Initializable {
         String query = "SELECT facilitator_name FROM facilitator"; // Is a SELECT that chooses al the names of the Facilitators in the table of it.
          ObservableList<String> facilitatorNames = FXCollections.observableArrayList(); //Is a list that will save Strings in an ObservableList
         try{ //
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ParcialUCA","root","Jp@gg2win"); //starts the connection with the Data Base
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank","root","apolo2004"); //starts the connection with the Data Base
             Statement st = conn.createStatement(); //Creates a statement that will be used to generate a result.
             ResultSet rs = st.executeQuery(query); //Execute the result and saves the values that the Query selects.
 
@@ -88,7 +97,7 @@ public class ReportDController implements Initializable {
 
         ObservableList<ClientTransaction> transactions = FXCollections.observableArrayList(); //Is a list that will save objects of the type ClientTransaction similar to the arrayList
         try{ //
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ParcialUCA", "root","Jp@gg2win"); //Starts the connection again.
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root","apolo2004"); //Starts the connection again.
             Statement st = conn.createStatement(); //generate a statement for this method to be used.
             ResultSet rs = st.executeQuery(query); //executes the query and saves the values.
             while (rs.next()){ //While there's another result keeps
@@ -104,4 +113,17 @@ public class ReportDController implements Initializable {
         }
         return transactions; //returns the ObservableList to be used in the button.
      }
+
+    @FXML
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException {
+        try {
+            root = FXMLLoader.load(getClass().getResource("initial-view.fxml"));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
