@@ -23,13 +23,13 @@ public class ReportB_Controller implements Initializable {
     //Tabla donde se mostraran los datos
 
     @FXML
-    private TableView<Report> tvReport;
+    private TableView<ReportBDto> tvReport;
     // Columna donde se mostrara el nombre del cliente
     @FXML
-    private TableColumn<Report, String> cClientName;
+    private TableColumn<ReportBDto, String> cClientName;
     //Columna donde se mostrara el total de dinero que gasto
     @FXML
-    private TableColumn<Report, Double> cAmountOfMoney;
+    private TableColumn<ReportBDto, Double> cAmountOfMoney;
     //Boton dentro de la interfaz para buscar al cliente
     @FXML
     private Button btnBuscar;
@@ -59,14 +59,14 @@ public class ReportB_Controller implements Initializable {
                 showErrorAlert("No se encontraron resultados ");// Si entra al if, muestra la alerta que no se encontraron resultados
                 return;// No realiza lo demas
             }
-            ObservableList<Report> reportList = FXCollections.observableArrayList();// Crea una lista observable vacía para almacenar objetos de tipo Report.
+            ObservableList<ReportBDto> reportBDtoList = FXCollections.observableArrayList();// Crea una lista observable vacía para almacenar objetos de tipo Report.
 
             while (rs.next()) {
                 String clientName = rs.getString("client_first_name") + " " + rs.getString("client_last_name");//Muestra el nombre y apellido del cliente
                 double totalGastado = rs.getDouble("total_gastado"); //Muestra el total gastado del cliente
-                reportList.add(new Report(clientName, totalGastado)); // Añade a la lista de reportes al cliente y su total gastado.
+                reportBDtoList.add(new ReportBDto(clientName, totalGastado)); // Añade a la lista de reportes al cliente y su total gastado.
             }
-            tvReport.setItems(reportList);//Se muestran los resultados en la interfaz
+            tvReport.setItems(reportBDtoList);//Se muestran los resultados en la interfaz
         } catch (Exception e) { // Si no logra conectarse a la base , atrapa al error
             showErrorAlert("Error al conectarse a la base: " + e.getMessage()); //Muestra un mensaje de error si no se conecta a la base
         }

@@ -1,11 +1,11 @@
 package com.example.parcial_final;
 
-
-public class Report {
+//Clase para transferir datos entre subsistemas de aplicaciones de software y para que la complejidad del codigo sea menor y mas legible.
+public class ReportBDto {
     private String clientName;//Atributo del nombre del cliente
     private double amountOfMoney;//Atributo del total de dinero
 
-    public Report(String clientName, double amountOfMoney) {//Constructor
+    public ReportBDto(String clientName, double amountOfMoney) {//Constructor
         this.clientName = clientName;// Asigna el nombre del cliente
         this.amountOfMoney = amountOfMoney;//Asigna la cantidad de dinero del cliente
     }
