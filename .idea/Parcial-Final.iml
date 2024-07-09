@@ -6,7 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Parcial_Final" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Parcial_Final/src" isTestSource="false" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="jbr-17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
