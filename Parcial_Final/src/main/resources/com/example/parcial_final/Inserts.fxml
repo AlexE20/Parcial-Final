@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parcial_final.InsertsController">
+   <children>
+      <Label text="Card">
+         <VBox.margin>
+            <Insets left="250.0" />
+         </VBox.margin>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="card number " />
+                  <TextField fx:id="txtCardNumber" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Expiration date" />
+                  <TextField fx:id="txtExpiration" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Card type" />
+                  <TextField fx:id="txtCardType" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Facilatator" />
+                  <ComboBox fx:id="cmbFacilitator" prefWidth="150.0" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="ID Client" />
+                  <TextField fx:id="txtIdClient" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnInsert" mnemonicParsing="false" onAction="#InsertCard" text="Insert" />
+            <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#UpdateCard" text="Update" />
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#DeleteCard" text="Delete" />
+         </children>
+         <padding>
+            <Insets left="205.0" />
+         </padding>
+      </HBox>
+      <Label text="Client">
+         <VBox.margin>
+            <Insets left="250.0" />
+         </VBox.margin>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="First name" />
+                  <TextField fx:id="txtFirstName" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Last name" />
+                  <TextField fx:id="txtLastname" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Direction" />
+                  <TextField fx:id="txtDirection" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Phone" />
+                  <TextField fx:id="txtPhone" />
+               </children>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnInsertC" mnemonicParsing="false" onAction="#InsertClient" text="Insert" />
+            <Button fx:id="btnUpdateC" mnemonicParsing="false" onAction="#UpdateClient" text="Update" />
+            <Button fx:id="btnDeleteC" mnemonicParsing="false" onAction="#DeleteClient" text="Delete" />
+            <TextField fx:id="txtIdTransaction" />
+         </children>
+         <padding>
+            <Insets left="205.0" />
+         </padding>
+      </HBox>
+      <Label text="Transaction">
+         <VBox.margin>
+            <Insets left="250.0" />
+         </VBox.margin>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Money amount" />
+                  <TextField fx:id="txtMoneyAmount" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Description" />
+                  <TextField fx:id="txtDesc" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="ID Card" />
+                  <TextField fx:id="txtIdCard" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="Transaction Date" />
+                  <TextField fx:id="txtTransc" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnInsertT" mnemonicParsing="false" onAction="#InsertTransaction" text="Insert" />
+            <Button fx:id="btnUpdateT" mnemonicParsing="false" onAction="#UpdateTransaction" text="Update" />
+            <Button fx:id="btnDeleteT" mnemonicParsing="false" onAction="#DeleteTransaction" text="Delete" />
+         </children>
+         <padding>
+            <Insets left="205.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>
