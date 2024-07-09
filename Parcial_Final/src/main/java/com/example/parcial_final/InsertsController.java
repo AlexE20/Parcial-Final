@@ -91,7 +91,7 @@ public class InsertsController implements Initializable { // Define la clase pri
 
     @FXML
     private void InsertCard(ActionEvent event) { // Método para insertar tarjeta
-        if (txtCardNumber.getText().isEmpty() || txtCardNumber.getText().length() != 12 || txtExpiration.getText().isEmpty() || txtCardType.getText().isEmpty() || cmbFacilitator.getSelectionModel().getSelectedItem() == null || txtIdClient.getText().isEmpty()) { // Verifica campos vacíos  00009423
+        if (txtCardNumber.getText().isEmpty() || txtCardNumber.getText().length() != 16|| dpCard.getValue()==null || txtCardType.getText().isEmpty() || cmbFacilitator.getSelectionModel().getSelectedItem() == null || txtIdClient.getText().isEmpty()) { // Verifica campos vacíos  00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error  00009423
             return; // Sale del método 00009423
         }
@@ -142,7 +142,7 @@ public class InsertsController implements Initializable { // Define la clase pri
 
     @FXML
     private void InsertTransaction(ActionEvent event) { // Método para insertar transacción  00009423
-        if (txtMoneyAmount.getText().isEmpty() || txtDesc.getText().isEmpty() || txtIdCard.getText().isEmpty() || txtTransc.getText().isEmpty()) { // Verifica campos vacíos 00009423
+        if (txtMoneyAmount.getText().isEmpty() || txtDesc.getText().isEmpty() || txtIdCard.getText().isEmpty() || dpTransaction.getValue()==null) { // Verifica campos vacíos 00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error 00009423
             return; // Sale del método 00009423
         }
@@ -193,7 +193,7 @@ public class InsertsController implements Initializable { // Define la clase pri
 
     @FXML
     private void UpdateCard(ActionEvent event) { // Método para actualizar tarjeta
-        if (txtCardNumber.getText().isEmpty() || txtCardNumber.getText().length() != 12 || txtExpiration.getText().isEmpty() || txtCardType.getText().isEmpty() || cmbFacilitator.getSelectionModel().getSelectedItem() == null || txtIdClient.getText().isEmpty()) { // Verifica campos vacíos  00009423
+        if (txtCardNumber.getText().isEmpty() || txtCardNumber.getText().length() != 16 || dpCard.getValue()==null || txtCardType.getText().isEmpty() || cmbFacilitator.getSelectionModel().getSelectedItem() == null || txtIdClient.getText().isEmpty()) { // Verifica campos vacíos  00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error  00009423
             return; // Sale del método  00009423
         }
@@ -207,6 +207,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             st.setString(4, txtCardType.getText()); // Establece el tipo de tarjeta 00009423
             st.setInt(4, cmbFacilitator.getSelectionModel().getSelectedItem()); // Establece el ID del facilitador 00009423
             st.setInt(6, Integer.parseInt(txtIdClient.getText())); // Establece el ID del cliente 00009423
+
             try {
                 int result = st.executeUpdate(); // Ejecuta la consulta 00009423
                 showSuccesAlert("Updated card successfully"); // Muestra alerta de éxito 00009423
@@ -221,7 +222,7 @@ public class InsertsController implements Initializable { // Define la clase pri
 
     @FXML
     private void UpdateTransaction(ActionEvent event) { // Método para actualizar transacción 00009423
-        if (txtMoneyAmount.getText().isEmpty() || txtDesc.getText().isEmpty() || txtIdCard.getText().isEmpty() || txtTransc.getText().isEmpty()) { // Verifica campos vacíos 00009423
+        if (txtMoneyAmount.getText().isEmpty() || txtDesc.getText().isEmpty() || txtIdCard.getText().isEmpty() || dpTransaction.getValue()==null) { // Verifica campos vacíos 00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error 00009423
             return; // Sale del método 00009423
         }
@@ -331,7 +332,7 @@ public class InsertsController implements Initializable { // Define la clase pri
 
     private void clearFields() { // Método para limpiar campos de texto 00009423
         txtCardNumber.clear(); // Limpia el campo de número de tarjeta 00009423
-        txtExpiration.clear(); // Limpia el campo de fecha de expiración 00009423
+        dpCard.setValue(null); // Limpia el campo de fecha de expiración 00009423
         txtCardType.clear(); // Limpia el campo de tipo de tarjeta 00009423
         cmbFacilitator.getSelectionModel().clearSelection(); // Limpia la selección del ComboBox 00009423
         txtIdClient.clear(); // Limpia el campo de ID de cliente 00009423
@@ -342,7 +343,7 @@ public class InsertsController implements Initializable { // Define la clase pri
         txtMoneyAmount.clear(); // Limpia el campo de cantidad de dinero 00009423
         txtDesc.clear(); // Limpia el campo de descripción 00009423
         txtIdCard.clear(); // Limpia el campo de ID de tarjeta 00009423
-        txtTransc.clear(); // Limpia el campo de fecha de transacción 00009423
+        dpTransaction.setValue(null); // Limpia el campo de fecha de transacción 00009423
         txtIdTransaction.clear(); // Limpia el campo de ID de transacción 00009423
         txtIdClientDel.clear(); //Lipia el campo de ID para borrar la Cliente 00005923
         txtIdCardDel.clear(); //Lipia el campo de ID para borrar la Tarjeta 00005923
