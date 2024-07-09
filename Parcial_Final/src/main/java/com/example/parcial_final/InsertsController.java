@@ -68,16 +68,24 @@ public class InsertsController implements Initializable { // Define la clase pri
     private TextField txtIdCardDel; //Define el textField que se ingresara el ID de Card para borrarlo 00005923
     @FXML
     private TextField txtIdTransactionDel; //Define el textField que se ingresara el ID de Transaction para borrarlo 00005923
+    @FXML
+    private TextField txtIdCardUpdate;
+    @FXML
+    private TextField txtIdClientUpdate;
+    @FXML
+    private TextField txtTransactionUpdate;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { // Método de inicialización  00009423
         cmbFacilitator.setItems(getFacilitatorIds()); //Inicializa los ids que estaran en el comboBox 00005923
+        showInfoAlert("In case you want to make an update, you must write the id of \n the process by the other hand, if you want to \n insert, the id is not necessary"); //Muestra el mensaje al iniciar esta ventana 00009423
     }
 
     private ObservableList<Integer> getFacilitatorIds() {
         String query = "SELECT id_facilitator FROM facilitator"; //00005923 Es un SELECT que escoge los ids de la tabla Facilitador
         ObservableList<Integer> facilitatorIds = FXCollections.observableArrayList(); //00005923 Es una lista que guardara dentro de una ObservableList
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); //00005923 Inicia la conexion con la Base de datos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); //00005923 Inicia la conexion con la Base de datos
              Statement st = conn.createStatement(); //00005923 Crea un declaracion que sera usada para generar un resultado
              ResultSet rs = st.executeQuery(query)) { //00005923 Executa el resultado y guarda los valores que la Query selecciono
             while (rs.next()) { //00005923 Mientras haya un siguiente la ObservalbeList seguira guardando atributos
@@ -96,7 +104,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return; // Sale del método 00009423
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos  00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos  00009423
             PreparedStatement st = conn.prepareStatement("INSERT INTO card (card_number, expiration_date, card_type, id_facilitator, id_client) VALUES (?, ?, ?, ?, ?)"); // Prepara la consulta SQL  00009423
             st.setString(1, txtCardNumber.getText()); // Establece el número de tarjeta  00009423
             st.setDate(2, Date.valueOf(dpCard.getValue())); // Establece la fecha de expiración por medio del date picker 00005923
@@ -122,7 +130,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return; // Sale del método
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos  00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos  00009423
             PreparedStatement st = conn.prepareStatement("INSERT INTO client (client_first_name, client_last_name, client_direction, client_phone_number) VALUES (?, ?, ?, ?)"); // Prepara la consulta SQL  00009423
             st.setString(1, txtFirstName.getText()); // Establece el nombre del cliente  00009423
             st.setString(2, txtLastname.getText()); // Establece el apellido del cliente  00009423
@@ -147,7 +155,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return; // Sale del método 00009423
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos 00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos 00009423
             PreparedStatement st = conn.prepareStatement("INSERT INTO transaction (money_amount, description, id_card, transaction_date) VALUES (?, ?, ?, ?)"); // Prepara la consulta SQL  00009423
             st.setDouble(1, Double.parseDouble(txtMoneyAmount.getText())); // Establece la cantidad de dinero 00009423
             st.setString(2, txtDesc.getText()); // Establece la descripción 00009423
@@ -167,18 +175,18 @@ public class InsertsController implements Initializable { // Define la clase pri
 
     @FXML
     private void UpdateClient(ActionEvent event) { // Método para actualizar cliente 00009423
-        if (txtFirstName.getText().isEmpty() || txtLastname.getText().isEmpty() || txtDirection.getText().isEmpty() || txtPhone.getText().length() > 8 || txtPhone.getText().isEmpty()) { // Verifica campos vacíos 00009423
+        if (txtFirstName.getText().isEmpty() || txtLastname.getText().isEmpty() || txtDirection.getText().isEmpty() || txtPhone.getText().length() > 8 || txtPhone.getText().isEmpty() || txtIdClientUpdate.getText().isEmpty()) { // Verifica campos vacíos 00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error  00009423
             return; // Sale del método
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos 00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos 00009423
             PreparedStatement st = conn.prepareStatement("UPDATE client SET client_first_name = ?, client_last_name = ?, client_direction = ?, client_phone_number = ? WHERE id_client = ?;"); // Prepara la consulta SQL 00009423
             st.setString(1, txtFirstName.getText()); // Establece el nombre del cliente 00009423
             st.setString(2, txtLastname.getText()); // Establece el apellido del cliente 00009423
             st.setString(3, txtDirection.getText()); // Establece la dirección del cliente 00009423
             st.setString(4, txtPhone.getText()); // Establece el teléfono del cliente 00009423
-            st.setInt(5, Integer.parseInt(txtIdClient.getText())); // Establece el ID del cliente  00009423
+            st.setInt(5, Integer.parseInt(txtIdClientUpdate.getText())); // Establece el ID del cliente  00009423
             try {
                 int result = st.executeUpdate(); // Ejecuta la consulta  00009423
                 showSuccesAlert("Updated client successfully"); // Muestra alerta de éxito  00009423
@@ -193,20 +201,21 @@ public class InsertsController implements Initializable { // Define la clase pri
 
     @FXML
     private void UpdateCard(ActionEvent event) { // Método para actualizar tarjeta
-        if (txtCardNumber.getText().isEmpty() || txtCardNumber.getText().length() != 16 || dpCard.getValue()==null || txtCardType.getText().isEmpty() || cmbFacilitator.getSelectionModel().getSelectedItem() == null || txtIdClient.getText().isEmpty()) { // Verifica campos vacíos  00009423
+        if (txtCardNumber.getText().isEmpty() || txtCardNumber.getText().length() != 16 || dpCard.getValue()==null || txtCardType.getText().isEmpty() || cmbFacilitator.getSelectionModel().getSelectedItem() == null || txtIdClient.getText().isEmpty() || txtIdCardUpdate.getText().isEmpty()) { // Verifica campos vacíos  00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error  00009423
             return; // Sale del método  00009423
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos  00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos  00009423
             PreparedStatement st = conn.prepareStatement("UPDATE card SET card_number = ?, expiration_date = ?, card_type = ?, id_facilitator = ?,id_client=? WHERE  id_card = ?;"); // Prepara la consulta SQL  00009423
 
-            st.setInt(1, Integer.parseInt(txtIdCard.getText())); // Establece el ID de la tarjeta 00009423
-            st.setString(2, txtCardNumber.getText()); // Establece el número de tarjeta 00009423
-            st.setDate(3, Date.valueOf(dpCard.getValue())); // Establece la fecha de expiración por el datePicker 00005923
-            st.setString(4, txtCardType.getText()); // Establece el tipo de tarjeta 00009423
+
+            st.setString(1, txtCardNumber.getText()); // Establece el número de tarjeta 00009423
+            st.setDate(2, Date.valueOf(dpCard.getValue())); // Establece la fecha de expiración por el datePicker 00005923
+            st.setString(3, txtCardType.getText()); // Establece el tipo de tarjeta 00009423
             st.setInt(4, cmbFacilitator.getSelectionModel().getSelectedItem()); // Establece el ID del facilitador 00009423
-            st.setInt(6, Integer.parseInt(txtIdClient.getText())); // Establece el ID del cliente 00009423
+            st.setInt(5, Integer.parseInt(txtIdClient.getText())); // Establece el ID del cliente 00009423
+            st.setInt(6, Integer.parseInt(txtIdCardUpdate.getText())); // Establece el ID de la tarjeta 00009423
 
             try {
                 int result = st.executeUpdate(); // Ejecuta la consulta 00009423
@@ -222,19 +231,20 @@ public class InsertsController implements Initializable { // Define la clase pri
 
     @FXML
     private void UpdateTransaction(ActionEvent event) { // Método para actualizar transacción 00009423
-        if (txtMoneyAmount.getText().isEmpty() || txtDesc.getText().isEmpty() || txtIdCard.getText().isEmpty() || dpTransaction.getValue()==null) { // Verifica campos vacíos 00009423
+        if (txtMoneyAmount.getText().isEmpty() || txtDesc.getText().isEmpty() || txtIdCard.getText().isEmpty() || dpTransaction.getValue()==null || txtTransactionUpdate.getText().isEmpty()) { // Verifica campos vacíos 00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error 00009423
             return; // Sale del método 00009423
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123"); // Conecta a la base de datos 00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win"); // Conecta a la base de datos 00009423
             PreparedStatement st = conn.prepareStatement("UPDATE transaction SET money_amount = ?, description = ?, id_card = ?, transaction_date = ? WHERE  id_transaction = ?;"); // Prepara la consulta SQL 00009423
 
-            st.setInt(1, Integer.parseInt(txtIdTransaction.getText())); // Establece el ID de la transacción 00009423
-            st.setDouble(2, Double.parseDouble(txtMoneyAmount.getText())); // Establece la cantidad de dinero 00009423
-            st.setString(3, txtDesc.getText()); // Establece la descripción 00009423
-            st.setInt(4, Integer.parseInt(txtIdCard.getText())); // Establece el ID de la tarjeta 00009423
-            st.setDate(5, Date.valueOf(dpTransaction.getValue())); // Establece la fecha de la transacción por el datePicker 00005923
+
+            st.setDouble(1, Double.parseDouble(txtMoneyAmount.getText())); // Establece la cantidad de dinero 00009423
+            st.setString(2, txtDesc.getText()); // Establece la descripción 00009423
+            st.setInt(3, Integer.parseInt(txtIdCard.getText())); // Establece el ID de la transacción 00009423
+            st.setDate(4, Date.valueOf(dpTransaction.getValue())); // Establece la fecha de la transacción por el datePicker 00005923
+            st.setInt(5, Integer.parseInt(txtTransactionUpdate.getText())); // Establece el ID de la tarjeta 00009423
             try {
                 int result = st.executeUpdate(); // Ejecuta la consulta
                 showSuccesAlert("Updated transaction successfully"); // Muestra alerta de éxito 00009423
@@ -254,7 +264,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return;
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win");
             PreparedStatement st = conn.prepareStatement("DELETE FROM client WHERE id_client = ?");
             st.setInt(1, Integer.parseInt(txtIdClientDel.getText()));
             try {
@@ -276,7 +286,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             return;
         }
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win");
             PreparedStatement st = conn.prepareStatement("DELETE FROM card WHERE id_card = ?");
             st.setInt(1, Integer.parseInt(txtIdCardDel.getText()));
             try {
@@ -299,8 +309,9 @@ public class InsertsController implements Initializable { // Define la clase pri
             return;
         }
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Egualos123");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "Jp@gg2win");
             PreparedStatement st = conn.prepareStatement("DELETE FROM transaction WHERE id_transaction = ?");
+            st.setInt(1, Integer.parseInt(txtIdTransactionDel.getText()));
             try {
                 int result = st.executeUpdate(); // Ejecuta la consulta 00005923
                 showSuccesAlert("Deleted transaction successfully"); // Muestra alerta de éxito 00005923
@@ -329,6 +340,13 @@ public class InsertsController implements Initializable { // Define la clase pri
         alert.setContentText(message); // Establece el mensaje de contenido de la alerta 00009423
         alert.showAndWait(); // Muestra la alerta y espera a que el usuario la cierre 00009423
     }
+    private void showInfoAlert(String message){ //Metodo para mostrar informacion 00009423
+        Alert alert=new Alert(Alert.AlertType.INFORMATION); // Crea una alerta de informacion 00009423
+        alert.setTitle("Information"); //Establece el titulo de la alerta 00009423
+        alert.setHeaderText("Advise:"); //Establece el encabezado de la alerta 00009423
+        alert.setContentText(message); //Establece el mensaje y el contenido 00009423
+        alert.showAndWait(); // Muestra la alerta y espera a que el usuario la cierre 00009423
+    }
 
     private void clearFields() { // Método para limpiar campos de texto 00009423
         txtCardNumber.clear(); // Limpia el campo de número de tarjeta 00009423
@@ -344,9 +362,11 @@ public class InsertsController implements Initializable { // Define la clase pri
         txtDesc.clear(); // Limpia el campo de descripción 00009423
         txtIdCard.clear(); // Limpia el campo de ID de tarjeta 00009423
         dpTransaction.setValue(null); // Limpia el campo de fecha de transacción 00009423
-        txtIdTransaction.clear(); // Limpia el campo de ID de transacción 00009423
         txtIdClientDel.clear(); //Lipia el campo de ID para borrar la Cliente 00005923
         txtIdCardDel.clear(); //Lipia el campo de ID para borrar la Tarjeta 00005923
         txtIdTransactionDel.clear(); //Lipia el campo de ID para borrar la transaccion 00005923
+        txtTransactionUpdate.clear(); //Lipia el campo de ID de la transaccion 00005923
+        txtIdCardUpdate.clear(); //Lipia el campo de ID de Tarjeta 00005923
+        txtIdClientUpdate.clear(); //Lipia el campo de ID de Cliente 00005923
     }
 }
