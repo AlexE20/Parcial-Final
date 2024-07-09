@@ -12,6 +12,7 @@ public class ClientTransaction { //00005923 This is a Data Transfer Object, used
         this.purchaseCount = purchaseCount; //00005923 initialize purchase count
         this.totalSpent = totalSpent; //00005923 initialize total spent
     }
+
     //00005923 setters and getters
     public String getFirstName() {
         return firstName;

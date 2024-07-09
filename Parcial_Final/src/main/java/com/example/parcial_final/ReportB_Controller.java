@@ -81,8 +81,8 @@ public class ReportB_Controller implements Initializable {
 
             while (rs.next()) {
                 String clientName = rs.getString("client_first_name") + " " + rs.getString("client_last_name");//Muestra el nombre y apellido del cliente
-                double totalGastado = rs.getDouble("total_gastado"); //Muestra el total gastado del cliente
-                reportList.add(new Report(clientName, totalGastado)); // Añade a la lista de reportes al cliente y su total gastado.
+                double totalSpent = rs.getDouble("total_gastado"); //Muestra el total gastado del cliente
+                reportList.add(new Report(clientName, totalSpent)); // Añade a la lista de reportes al cliente y su total gastado.
             }
             tvReport.setItems(reportList);//Se muestran los resultados en la interfaz
         } catch (Exception e) { // Si no logra conectarse a la base , atrapa al error
