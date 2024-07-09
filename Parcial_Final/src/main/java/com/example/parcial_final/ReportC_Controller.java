@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -73,7 +75,7 @@ public class ReportC_Controller {//00080323 Clase responsable de controlar la vi
     private ArrayList<Card> getCards(int clientId, String cardType) {//00080323 Método para obtener las tarjetas dado un id de cliente y un tipo de tarjeta.
         ArrayList<Card> cards = new ArrayList<>();//00080323 Se crea un ArrayList de tarjetas vacío.
         try {//00080323 Try-catch para establecer conexión con bD.
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");//00080323 Establecer conexión con bD.
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!");//00080323 Establecer conexión con bD.
             PreparedStatement pst = conn.prepareStatement(//00080323 Preparamos el statement de sql dado un id y tipo de tarjeta.
                     "SELECT t.card_number " +
                             "FROM client c " +
@@ -111,7 +113,12 @@ public class ReportC_Controller {//00080323 Clase responsable de controlar la vi
     public void generateFile(ArrayList<Card> creditCards, ArrayList<Card> debitCards){//00080323 Método para generar archivo txt.
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");//00080323 Crea un formateador de fecha y hora con el patrón "dd-MM-yyyy_HH-mm-ss-
         LocalDateTime now = LocalDateTime.now();//00080323 Obtiene la fecha y hora actual.
-        String path= "Parcial_Final/src/Reports/";//00080323 Ruta donde se quiere agregar el archivo.
+        String path= "Reports/";//00080323 Ruta donde se quiere agregar el archivo.
+        try { // 00106123 se intenta ejecutar el siguiente bloque de codigo
+            Files.createDirectories(Paths.get(path)); //00106123 Revisa si la carpeta que se le paso existe, y si no, la crea
+        } catch (IOException e) { //00106123 manejo de la excepcion
+            System.out.println(e); //00106123 se imprime la excepcion
+        }
         String fileName = path + "Report-C-" + dtf.format(now) + ".txt";//00080323 Crea el nombre del archivo utilizando la ruta, un prefijo y la fecha y hora formateadas.
 
         try (FileWriter writer = new FileWriter(fileName)) {//00080323 Try-Catch para asegurar que el FileWriter se cierre automáticamente
@@ -126,7 +133,7 @@ public class ReportC_Controller {//00080323 Clase responsable de controlar la vi
             }
 
         } catch (IOException e) {//00080323 Capturamos cualquier exepción que suceda durante el proceso de escritura en el archivo.
-            System.out.println(e.getMessage());//00080323  Imprmir mensaje de exepción si ocurre .
+            System.out.println(e);//00080323  Imprmir mensaje de exepción si ocurre .
         }
 
     }

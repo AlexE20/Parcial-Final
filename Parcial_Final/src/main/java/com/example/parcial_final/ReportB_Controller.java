@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -59,13 +61,13 @@ public class ReportB_Controller implements Initializable {
 
     //Funcion que se realiza al apretar el boton buscar dentro de la interfaz
     @FXML
-    private void reportB(ActionEvent actionEvent) {
+    private void reportB() {
         if (txtIdClient.getText().isEmpty() || txtYear.getText().isEmpty() || cmbMonth.getSelectionModel().getSelectedItem() == null) { //Comprueba si algun campo de la interfaz esta vacio o sin seleccionar
             showErrorAlert("Campo obligatorio no seleccionado"); //Muestra un mensaje de alerta si entra en el if
             return; //No se realiza nada
         }
         try {//Intenta la conexion con la base de datos
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");//Realizando la conexion a la base de datos
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!");//Realizando la conexion a la base de datos
             PreparedStatement st = conn.prepareStatement("SELECT c.client_first_name, c.client_last_name, SUM(t.money_amount) AS total_gastado FROM client c INNER JOIN card ca ON c.id_client = ca.id_client INNER JOIN transaction t ON ca.id_card = t.id_card WHERE c.id_client = ? AND YEAR(t.transaction_date) = ? AND MONTH(t.transaction_date) = ? GROUP BY c.client_first_name, c.client_last_name;");//Selecciona al cliente , al mes y al año para devolver el total que el cliente gasto en ese tiempo
             st.setInt(1, Integer.parseInt(txtIdClient.getText()));//Asigna el primer parametro que seria el id
             st.setInt(2, Integer.parseInt(txtYear.getText()));//Asigna el segundo parametro que seria el año
@@ -101,7 +103,14 @@ public class ReportB_Controller implements Initializable {
     public void generateFile() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
         LocalDateTime now = LocalDateTime.now();
-        String path = "Parcial_Final/src/Reports/";
+        String path = "Reports/";
+
+        try { // 00106123 se intenta ejecutar el siguiente bloque de codigo
+            Files.createDirectories(Paths.get(path)); //00106123 Revisa si la carpeta que se le paso existe, y si no, la crea
+        } catch (IOException e) { //00106123 manejo de la excepcion
+            System.out.println(e); //00106123 se imprime la excepcion
+        }
+
         String fileName = path + "Report-B-" + dtf.format(now) + ".txt";
 
         try (FileWriter writer = new FileWriter(fileName)) {
@@ -111,12 +120,12 @@ public class ReportB_Controller implements Initializable {
                 writer.write("No data available\n");
             } else {
                 for (Report report : reportList) {
-                    writer.write("Client: " + report.getClientName() + ", Ammount: " + report.getAmountOfMoney() + "\n");
+                    writer.write("Client: " + report.getClientName() + "\nAmount: " + report.getAmountOfMoney() + "\n");
                 }
             }
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
     }
 

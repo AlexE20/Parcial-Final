@@ -16,15 +16,20 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class ReportDController implements Initializable {
+public class ReportD_Controller implements Initializable {
 
     private Parent root;//00080323 Ventana padre.
     private Stage stage;
@@ -32,7 +37,7 @@ public class ReportDController implements Initializable {
     @FXML
     ComboBox<String> comBoxFacilitator; //Declaration of a ComboBox attribute to select the type of Facilitator.
     @FXML
-    private TableView<ClientTransaction> tableView; //Declaration of TableView to show the columns selected by the Facilitator.
+    private TableView<ClientTransaction> tvClientTransactions; //Declaration of TableView to show the columns selected by the Facilitator.
     @FXML
     private TableColumn<ClientTransaction, String> colFirstName; // Declaration of the column that will show the Client first name.
     @FXML
@@ -55,19 +60,21 @@ public class ReportDController implements Initializable {
         colTotalSpent.setCellValueFactory(new PropertyValueFactory<>("totalSpent")); // References the summation of the total spent and sets it.
     }
 
-    public void searchFacilitator(ActionEvent event) { //Method that will use the button to start the generation of the table.
+    @FXML
+    public void searchFacilitator() { //Method that will use the button to start the generation of the table.
 
         String selectedFacilitator = comBoxFacilitator.getValue(); //gets the value selected in the comboBox
         if (selectedFacilitator != null) { //Will evaluate if exists a selection of the Facilitator the process to show the hair.
-            tableView.setItems(getTransactions(selectedFacilitator)); //The objects generated on the method are saved in the TableView.
+            tvClientTransactions.setItems(getTransactions(selectedFacilitator)); //The objects generated on the method are saved in the TableView.
         }
+        generateFile();
     }
 
      private ObservableList<String> getFacilitatorNames(){
         String query = "SELECT facilitator_name FROM facilitator"; // Is a SELECT that chooses al the names of the Facilitators in the table of it.
          ObservableList<String> facilitatorNames = FXCollections.observableArrayList(); //Is a list that will save Strings in an ObservableList
         try{ //
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank","root","apolo2004"); //starts the connection with the Data Base
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco","root","Elchocochele04!"); //starts the connection with the Data Base
             Statement st = conn.createStatement(); //Creates a statement that will be used to generate a result.
             ResultSet rs = st.executeQuery(query); //Execute the result and saves the values that the Query selects.
 
@@ -75,7 +82,7 @@ public class ReportDController implements Initializable {
                 facilitatorNames.add(rs.getString("facilitator_name")); //Adds the ObservableList by getting the column
             }
         }catch(Exception e){ //catches if there's a mistake with the connection to the DataBase or looking for the Facilitator names.
-            System.out.println(e.getMessage()); //prints the error
+            System.out.println(e); //prints the error
         }
         return facilitatorNames; //returns the ObservableList to be used in the comboBox
      }
@@ -97,7 +104,7 @@ public class ReportDController implements Initializable {
 
         ObservableList<ClientTransaction> transactions = FXCollections.observableArrayList(); //Is a list that will save objects of the type ClientTransaction similar to the arrayList
         try{ //
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root","apolo2004"); //Starts the connection again.
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root","Elchocochele04!"); //Starts the connection again.
             Statement st = conn.createStatement(); //generate a statement for this method to be used.
             ResultSet rs = st.executeQuery(query); //executes the query and saves the values.
             while (rs.next()){ //While there's another result keeps
@@ -109,10 +116,39 @@ public class ReportDController implements Initializable {
                 )); //Adds the ObservableList by getting the columns
             }
         }catch (Exception e){ //catches if there is a mistake with the connection and looking for the
-            System.out.println(e.getMessage()); //prints the error
+            System.out.println(e); //prints the error
         }
         return transactions; //returns the ObservableList to be used in the button.
      }
+
+    public void generateFile() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
+        LocalDateTime now = LocalDateTime.now();
+        String path = "Reports/";
+
+        try { // 00106123 se intenta ejecutar el siguiente bloque de codigo
+            Files.createDirectories(Paths.get(path)); //00106123 Revisa si la carpeta que se le paso existe, y si no, la crea
+        } catch (IOException e) { //00106123 manejo de la excepcion
+            System.out.println(e); //00106123 se imprime la excepcion
+        }
+
+        String fileName = path + "Report-D-" + dtf.format(now) + ".txt";
+
+        try (FileWriter writer = new FileWriter(fileName)) {
+            ObservableList<ClientTransaction> reportList = tvClientTransactions.getItems();
+
+            if (reportList.isEmpty()) {
+                writer.write("No data available\n");
+            } else {
+                for (ClientTransaction clientTransaction : reportList) {
+                    writer.write("Client: " + clientTransaction.getFirstName() + " " + clientTransaction.getLastName() + "\nPurchase count: " + clientTransaction.getPurchaseCount() + "\nTotal spent: " + clientTransaction.getTotalSpent() + "\n");
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
 
     @FXML
     protected void onReturnbtn_Click(ActionEvent event) throws IOException {
