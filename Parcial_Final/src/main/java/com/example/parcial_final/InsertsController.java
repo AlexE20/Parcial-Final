@@ -111,7 +111,7 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     @FXML
-    private void InsertCard(ActionEvent event) { // Método para insertar tarjeta
+    private void InsertCard() { // Método para insertar tarjeta
         if (txtCardNumber.getText().isEmpty() || txtCardNumber.getText().length() != 16|| dpCard.getValue()==null || txtCardType.getText().isEmpty() || cmbFacilitator.getSelectionModel().getSelectedItem() == null || txtIdClient.getText().isEmpty()) { // Verifica campos vacíos  00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error  00009423
             return; // Sale del método 00009423
@@ -137,7 +137,7 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     @FXML
-    private void InsertClient(ActionEvent event) { // Método para insertar cliente  00009423
+    private void InsertClient() { // Método para insertar cliente  00009423
         if (txtFirstName.getText().isEmpty() || txtLastname.getText().isEmpty() || txtDirection.getText().isEmpty() || txtPhone.getText().length() > 8 || txtPhone.getText().isEmpty()) { // Verifica campos vacíos  00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error  00009423
             return; // Sale del método
@@ -162,7 +162,7 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     @FXML
-    private void InsertTransaction(ActionEvent event) { // Método para insertar transacción  00009423
+    private void InsertTransaction() { // Método para insertar transacción  00009423
         if (txtMoneyAmount.getText().isEmpty() || txtDesc.getText().isEmpty() || txtIdCard.getText().isEmpty() || dpTransaction.getValue()==null) { // Verifica campos vacíos 00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error 00009423
             return; // Sale del método 00009423
@@ -187,7 +187,7 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     @FXML
-    private void UpdateClient(ActionEvent event) { // Método para actualizar cliente 00009423
+    private void UpdateClient() { // Método para actualizar cliente 00009423
         if (txtFirstName.getText().isEmpty() || txtLastname.getText().isEmpty() || txtDirection.getText().isEmpty() || txtPhone.getText().length() > 8 || txtPhone.getText().isEmpty() || txtIdClientUpdate.getText().isEmpty()) { // Verifica campos vacíos 00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error  00009423
             return; // Sale del método
@@ -213,7 +213,7 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     @FXML
-    private void UpdateCard(ActionEvent event) { // Método para actualizar tarjeta
+    private void UpdateCard() { // Método para actualizar tarjeta
         if (txtCardNumber.getText().isEmpty() || txtCardNumber.getText().length() != 16 || dpCard.getValue()==null || txtCardType.getText().isEmpty() || cmbFacilitator.getSelectionModel().getSelectedItem() == null || txtIdClient.getText().isEmpty() || txtIdCardUpdate.getText().isEmpty()) { // Verifica campos vacíos  00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error  00009423
             return; // Sale del método  00009423
@@ -243,7 +243,7 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     @FXML
-    private void UpdateTransaction(ActionEvent event) { // Método para actualizar transacción 00009423
+    private void UpdateTransaction() { // Método para actualizar transacción 00009423
         if (txtMoneyAmount.getText().isEmpty() || txtDesc.getText().isEmpty() || txtIdCard.getText().isEmpty() || dpTransaction.getValue()==null || txtTransactionUpdate.getText().isEmpty()) { // Verifica campos vacíos 00009423
             showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error 00009423
             return; // Sale del método 00009423
@@ -271,7 +271,7 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     @FXML
-    private void DeleteClient(ActionEvent event) { // Método para eliminar cliente
+    private void DeleteClient() { // Método para eliminar cliente
         if (txtIdClientDel.getText().isEmpty()) { //00005923 Evalua si es posible escribir en el textfield
             showErrorAlert("Please enter the Client ID to delete"); //muestra un mensaje de error 00005923
             return;
@@ -293,7 +293,7 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     @FXML
-    private void DeleteCard(ActionEvent event) { // Método para eliminar tarjeta
+    private void DeleteCard() { // Método para eliminar tarjeta
         if (txtIdCardDel.getText().isEmpty()) { //00005923 Evalua si es posible escribir en el textfield
             showErrorAlert("Please enter the Card ID to delete"); //muestra un mensaje de error 00005923
             return;
@@ -316,7 +316,7 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     @FXML
-    private void DeleteTransaction(ActionEvent event) { // Método para eliminar transacción
+    private void DeleteTransaction() { // Método para eliminar transacción
         if (txtIdTransactionDel.getText().isEmpty()) { //00005923 Evalua si es posible escribir en el textfield
             showErrorAlert("Please enter the Transaction ID to delete"); //muestra un mensaje de error
             return;
