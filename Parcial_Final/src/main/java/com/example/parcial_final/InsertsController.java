@@ -4,14 +4,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent; // Importa clases para manejar eventos 00009423
 import javafx.fxml.FXML; // Importa anotaciones FXML  00009423
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable; // Importa la interfaz Initializable  00009423
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL; // Importa la clase URL  00009423
 import java.sql.*; // Importa clases para manejo de SQL  00009423
 import java.util.ResourceBundle; // Importa la clase ResourceBundle  00009423
 
 public class InsertsController implements Initializable { // Define la clase principal  00009423
+
+    private Parent root;//00080323 Ventana padre.
+    private Stage stage;
+    private Scene scene;
+
     @FXML
     private TextField txtCardNumber; // Define el campo de texto para el número de tarjeta  00009423
     @FXML
@@ -370,5 +381,18 @@ public class InsertsController implements Initializable { // Define la clase pri
         txtTransactionUpdate.clear(); //Lipia el campo de ID de la transaccion 00005923
         txtIdCardUpdate.clear(); //Lipia el campo de ID de Tarjeta 00005923
         txtIdClientUpdate.clear(); //Lipia el campo de ID de Cliente 00005923
+    }
+
+    @FXML
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException {
+        try {
+            root = FXMLLoader.load(getClass().getResource("initial-view.fxml"));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

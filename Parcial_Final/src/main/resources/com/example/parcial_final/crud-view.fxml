@@ -221,7 +221,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button mnemonicParsing="false" text="Return" />
+                  <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#onReturnbtn_Click" text="Return" />
                </children>
                <padding>
                   <Insets left="25.0" top="20.0" />

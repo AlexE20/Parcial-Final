@@ -28,6 +28,8 @@ public class InitialScreenController {
 
     @FXML
     private Button btnReportD;//Boton para mostrar reporte D.
+    @FXML
+    private Button btnCRUD; //Boton para mostrar el CRUD.
 
 
 
@@ -84,5 +86,17 @@ public class InitialScreenController {
         stage.show();
     }
 
+    @FXML
+    protected void onCRUD_Click(ActionEvent event)throws IOException {
+        try{
+            root = FXMLLoader.load(getClass().getResource("crud-view.fxml"));
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+        stage =(Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 }
