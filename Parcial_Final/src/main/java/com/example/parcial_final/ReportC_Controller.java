@@ -48,8 +48,8 @@ public class ReportC_Controller {//00080323 Clase responsable de controlar la vi
 
     @FXML
     public void initialize() {// 00080323 Método para inicializar el controlador, y inicializar los valores de las columnas de las tablas.
-        colCreditCardNum.setCellValueFactory(cellData -> cellData.getValue().cardNumberCensoredProperty());
-        colDeditCardNum.setCellValueFactory(cellData -> cellData.getValue().cardNumberCensoredProperty());
+        colCreditCardNum.setCellValueFactory(cellData -> cellData.getValue().cardNumberCensoredProperty()); //00080323 Llena los valores de las columnas con la informacion de la base
+        colDeditCardNum.setCellValueFactory(cellData -> cellData.getValue().cardNumberCensoredProperty()); //00080323 Llena los valores de las columnas con la informacion de la base
     }
 
     @FXML

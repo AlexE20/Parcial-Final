@@ -31,9 +31,9 @@ import java.util.ResourceBundle;
 
 public class ReportD_Controller implements Initializable {
 
-    private Parent root;//00080323 Ventana padre.
-    private Stage stage;
-    private Scene scene;
+    private Parent root; //00080323 Ventana padre.
+    private Stage stage; //00080323 Es la ventana de la aplicación
+    private Scene scene; //00080323 Es el contenido adentro de la ventana, es decir lo que cambia dinámicamente.
     @FXML
     ComboBox<String> comBoxFacilitator; //00005923 Declaration of a ComboBox attribute to select the type of Facilitator.
     @FXML
@@ -67,7 +67,7 @@ public class ReportD_Controller implements Initializable {
         if (selectedFacilitator != null) { //00005923 Will evaluate if exists a selection of the Facilitator the process to show the hair.
             tvClientTransactions.setItems(getTransactions(selectedFacilitator)); //00005923 The objects generated on the method are saved in the TableView.
         }
-        generateFile();
+        generateFile(); ////00080323 calls the Function to generate the File
     }
 
      private ObservableList<String> getFacilitatorNames(){
@@ -119,9 +119,9 @@ public class ReportD_Controller implements Initializable {
      }
 
     public void generateFile() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
-        LocalDateTime now = LocalDateTime.now();
-        String path = "Reports/";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"); //00080323 Método para generar archivo txt.
+        LocalDateTime now = LocalDateTime.now(); //00080323 Obtiene la fecha y hora actual.
+        String path = "Reports/";  String path= "Reports/";//00080323 Ruta donde se quiere agregar el archivo.
 
         try { // 00106123 se intenta ejecutar el siguiente bloque de codigo
             Files.createDirectories(Paths.get(path)); //00106123 Revisa si la carpeta que se le paso existe, y si no, la crea
@@ -129,34 +129,34 @@ public class ReportD_Controller implements Initializable {
             System.out.println(e); //00106123 se imprime la excepcion
         }
 
-        String fileName = path + "Report-D-" + dtf.format(now) + ".txt";
+        String fileName = path + "Report-D-" + dtf.format(now) + ".txt"; //00080323 Crea el nombre del archivo utilizando la ruta, un prefijo y la fecha y hora formateadas.
 
-        try (FileWriter writer = new FileWriter(fileName)) {
-            ObservableList<ClientTransaction> reportList = tvClientTransactions.getItems();
+        try (FileWriter writer = new FileWriter(fileName)) { //00080323 Try-Catch para asegurar que el FileWriter se cierre automáticamente
+            ObservableList<ClientTransaction> reportList = tvClientTransactions.getItems(); //00080323 Almacena los registros
 
-            if (reportList.isEmpty()) {
-                writer.write("No data available\n");
-            } else {
-                for (ClientTransaction clientTransaction : reportList) {
-                    writer.write("Client: " + clientTransaction.getFirstName() + " " + clientTransaction.getLastName() + "\nPurchase count: " + clientTransaction.getPurchaseCount() + "\nTotal spent: " + clientTransaction.getTotalSpent() + "\n");
+            if (reportList.isEmpty()) { // 00080323 Si esta vacio
+                writer.write("No data available\n"); ////00080323 Registra que no hay data
+            } else { ////00080323 en caso de que no escribe los datos
+                for (ClientTransaction clientTransaction : reportList) { //00080323 va iterando para escribir los datos
+                    writer.write("Client: " + clientTransaction.getFirstName() + " " + clientTransaction.getLastName() + "\nPurchase count: " + clientTransaction.getPurchaseCount() + "\nTotal spent: " + clientTransaction.getTotalSpent() + "\n"); //Escribe los datos
                 }
             }
 
-        } catch (IOException e) {
-            System.out.println(e);
+        } catch (IOException e) { //00080323 Captura la Execption
+            System.out.println(e); //00080323 Imprime la Expection
         }
     }
 
     @FXML
-    protected void onReturnbtn_Click(ActionEvent event) throws IOException {
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException { //00080323 Método para retornar a la ventana principal.
         try {
-            root = FXMLLoader.load(getClass().getResource("initial-view.fxml"));
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+            root = FXMLLoader.load(getClass().getResource("initial-view.fxml")); //00080323 Cargamos la pantalla inicial
+        } catch (NullPointerException e) { //00080323 Manejamos la exepción.
+            e.printStackTrace(); // 00080323 Imprimimos exepción.
         }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //00080323 Método para  obtener la ventana actual.
+        scene = new Scene(root); // 00080323 Instanciamos una nueva escena .
+        stage.setScene(scene); //00080323 Cambiamos la escena de la ventana.
+        stage.show(); //00080323 Mostramos nueva escena en la ventana.
     }
 }

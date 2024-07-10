@@ -24,73 +24,73 @@ public class InsertsController implements Initializable { // Define la clase pri
     private Scene scene;
 
     @FXML
-    private TextField txtCardNumber; // Define el campo de texto para el número de tarjeta  00009423
+    private TextField txtCardNumber; //00009423 Define el campo de texto para el número de tarjeta  
     @FXML
-    private TextField txtExpiration; // Define el campo de texto para la fecha de expiración 00009423
+    private TextField txtExpiration; //00009423 Define el campo de texto para la fecha de expiración 
     @FXML
-    private TextField txtCardType; // Define el campo de texto para el tipo de tarjeta  00009423
+    private TextField txtCardType; //00009423 Define el campo de texto para el tipo de tarjeta  
     @FXML
-    private ComboBox<Integer> cmbFacilitator; // Define el ComboBox para el facilitador de la tarjeta  00009423
+    private ComboBox<Integer> cmbFacilitator; //00009423 Define el ComboBox para el facilitador de la tarjeta  
     @FXML
-    private TextField txtIdClient; // Define el campo de texto para el ID del cliente  00009423
+    private TextField txtIdClient; //00009423 Define el campo de texto para el ID del cliente  
     @FXML
-    private Button btnInsert; // Define el botón para insertar tarjeta  00009423
+    private Button btnInsert; //00009423 Define el botón para insertar tarjeta  
     @FXML
-    private Button btnDelete; // Define el botón para eliminar tarjeta  00009423
+    private Button btnDelete; //00009423 Define el botón para eliminar tarjeta  
     @FXML
-    private Button btnUpdate; // Define el botón para actualizar tarjeta  00009423
+    private Button btnUpdate; //00009423 Define el botón para actualizar tarjeta  
     @FXML
-    private TextField txtFirstName; // Define el campo de texto para el nombre del cliente  00009423
+    private TextField txtFirstName; //00009423 Define el campo de texto para el nombre del cliente  
     @FXML
-    private TextField txtLastname; // Define el campo de texto para el apellido del cliente  00009423
+    private TextField txtLastname; //00009423 Define el campo de texto para el apellido del cliente  
     @FXML
-    private TextField txtDirection; // Define el campo de texto para la dirección del cliente  00009423
+    private TextField txtDirection; //00009423 Define el campo de texto para la dirección del cliente  
     @FXML
-    private TextField txtPhone; // Define el campo de texto para el teléfono del cliente  00009423
+    private TextField txtPhone; //00009423 Define el campo de texto para el teléfono del cliente  
     @FXML
-    private Button btnInsertC; // Define el botón para insertar cliente  00009423
+    private Button btnInsertC; //00009423 Define el botón para insertar cliente  
     @FXML
-    private Button btnDeleteC; // Define el botón para eliminar cliente  00009423
+    private Button btnDeleteC; //00009423 Define el botón para eliminar cliente  
     @FXML
-    private Button btnUpdateC; // Define el botón para actualizar cliente  00009423
+    private Button btnUpdateC; //00009423 Define el botón para actualizar cliente  
     @FXML
-    private TextField txtMoneyAmount; // Define el campo de texto para la cantidad de dinero de la transacción  00009423
+    private TextField txtMoneyAmount; //00009423 Define el campo de texto para la cantidad de dinero de la transacción  
     @FXML
-    private TextField txtDesc; // Define el campo de texto para la descripción de la transacción  00009423
+    private TextField txtDesc; //00009423 Define el campo de texto para la descripción de la transacción  
     @FXML
-    private TextField txtIdCard; // Define el campo de texto para el ID de la tarjeta de la transacción  00009423
+    private TextField txtIdCard; //00009423 Define el campo de texto para el ID de la tarjeta de la transacción  
     @FXML
-    private TextField txtTransc; // Define el campo de texto para una transacción 00009423
+    private TextField txtTransc; //00009423 Define el campo de texto para una transacción 
     @FXML
-    private Button btnInsertT; // Define el botón para insertar una transacción  00009423
+    private Button btnInsertT; //00009423 Define el botón para insertar una transacción  
     @FXML
-    private Button btnDeleteT; // Define el botón para eliminar una transacción  00009423
+    private Button btnDeleteT; //00009423 Define el botón para eliminar una transacción  
     @FXML
-    private Button btnUpdateT; // Define el botón para actualizar una transacción  00009423
+    private Button btnUpdateT; //00009423 Define el botón para actualizar una transacción  
     @FXML
-    private TextField txtIdTransaction; // Define el campo de texto para el ID de la transacción  00009423
+    private TextField txtIdTransaction; //00009423 Define el campo de texto para el ID de la transacción  
     @FXML
-    private DatePicker dpTransaction; //Define datePicker 00005923
+    private DatePicker dpTransaction; //00005923 Define datePicker 
     @FXML
-    private DatePicker dpCard;  //Define datePicker for card expiration 00005923
+    private DatePicker dpCard;  //00005923 Define datePicker for card expiration 
     @FXML
-    private TextField txtIdClientDel; //Define el textField que se ingresara el ID de client para borrarlo 00005923
+    private TextField txtIdClientDel; //00005923 Define el textField que se ingresara el ID de client para borrarlo 
     @FXML
-    private TextField txtIdCardDel; //Define el textField que se ingresara el ID de Card para borrarlo 00005923
+    private TextField txtIdCardDel; //00005923 Define el textField que se ingresara el ID de Card para borrarlo 
     @FXML
-    private TextField txtIdTransactionDel; //Define el textField que se ingresara el ID de Transaction para borrarlo 00005923
+    private TextField txtIdTransactionDel; //00005923 Define el textField que se ingresara el ID de Transaction para borrarlo 
     @FXML
-    private TextField txtIdCardUpdate;
+    private TextField txtIdCardUpdate; //00005923 Define el textField que se ingresara el ID para el update en tarjeta 
     @FXML
-    private TextField txtIdClientUpdate;
+    private TextField txtIdClientUpdate; //00005923 Define el textField que se ingresara el ID para el update en client 
     @FXML
-    private TextField txtTransactionUpdate;
+    private TextField txtTransactionUpdate; //00005923 Define el textField que se ingresara el ID para el update en transaction 
 
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { // Método de inicialización  00009423
-        cmbFacilitator.setItems(getFacilitatorIds()); //Inicializa los ids que estaran en el comboBox 00005923
-        showInfoAlert("In case you want to make an update, you must write the id of \n the process by the other hand, if you want to \n insert, the id is not necessary"); //Muestra el mensaje al iniciar esta ventana 00009423
+    public void initialize(URL url, ResourceBundle resourceBundle) { //00009423 Método de inicialización  
+        cmbFacilitator.setItems(getFacilitatorIds()); //00005923 Inicializa los ids que estaran en el comboBox 
+        showInfoAlert("In case you want to make an update, you must write the id of \n the process by the other hand, if you want to \n insert, the id is not necessary"); //00009423 Muestra el mensaje al iniciar esta ventana 
     }
 
     private ObservableList<Integer> getFacilitatorIds() {
@@ -105,59 +105,59 @@ public class InsertsController implements Initializable { // Define la clase pri
                 facilitatorIds.add(rs.getInt("id_facilitator")); //00005923 Agrega la ObservableList por medio de la columna
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage()); // Muestra alerta de error general  00005923
+            System.out.println(e.getMessage()); //00005923 Muestra alerta de error general  
         }
         return facilitatorIds; //00005923 devuelve la ObservableListe para ser usada en el comboBox
     }
 
     @FXML
     private void InsertCard() { // Método para insertar tarjeta
-        if (txtCardNumber.getText().isEmpty() || txtCardNumber.getText().length() != 16|| dpCard.getValue()==null || txtCardType.getText().isEmpty() || cmbFacilitator.getSelectionModel().getSelectedItem() == null || txtIdClient.getText().isEmpty()) { // Verifica campos vacíos  00009423
-            showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error  00009423
-            return; // Sale del método 00009423
+        if (txtCardNumber.getText().isEmpty() || txtCardNumber.getText().length() != 16|| dpCard.getValue()==null || txtCardType.getText().isEmpty() || cmbFacilitator.getSelectionModel().getSelectedItem() == null || txtIdClient.getText().isEmpty()) { //00009423 Verifica campos vacíos  
+            showErrorAlert("Make sure you write the fields correctly "); //00009423 Muestra alerta de error  
+            return; //00009423 Sale del método 
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!"); // Conecta a la base de datos  00009423
-            PreparedStatement st = conn.prepareStatement("INSERT INTO card (card_number, expiration_date, card_type, id_facilitator, id_client) VALUES (?, ?, ?, ?, ?)"); // Prepara la consulta SQL  00009423
-            st.setString(1, txtCardNumber.getText()); // Establece el número de tarjeta  00009423
-            st.setDate(2, Date.valueOf(dpCard.getValue())); // Establece la fecha de expiración por medio del date picker 00005923
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!"); //00009423 Conecta a la base de datos  
+            PreparedStatement st = conn.prepareStatement("INSERT INTO card (card_number, expiration_date, card_type, id_facilitator, id_client) VALUES (?, ?, ?, ?, ?)"); //00009423 Prepara la consulta SQL  
+            st.setString(1, txtCardNumber.getText()); //00009423 Establece el número de tarjeta  
+            st.setDate(2, Date.valueOf(dpCard.getValue())); //00005923 Establece la fecha de expiración por medio del date picker 
             st.setString(3, txtCardType.getText()); // Establece el tipo de tarjeta  00009423
-            st.setInt(4, cmbFacilitator.getSelectionModel().getSelectedItem()); // Establece el ID del facilitador  00005923
-            st.setInt(5, Integer.parseInt(txtIdClient.getText())); // Establece el ID del cliente  00009423
+            st.setInt(4, cmbFacilitator.getSelectionModel().getSelectedItem()); //00005923 Establece el ID del facilitador  
+            st.setInt(5, Integer.parseInt(txtIdClient.getText())); //00009423 Establece el ID del cliente  
             try {
-                int result = st.executeUpdate(); // Ejecuta la consulta  00009423
-                showSuccesAlert("Added card successfully"); // Muestra alerta de éxito  00009423
-                clearFields(); // Limpia los campos de texto  00009423
+                int result = st.executeUpdate(); //00009423 Ejecuta la consulta  
+                showSuccesAlert("Added card successfully"); //00009423 Muestra alerta de éxito  
+                clearFields(); //00009423 Limpia los campos de texto  
             } catch (SQLException e) {
-                showErrorAlert(e.getMessage()); // Muestra alerta de error SQL  00009423
+                showErrorAlert(e.getMessage()); //00009423 Muestra alerta de error SQL  
             }
         } catch (Exception E) {
-            showErrorAlert(E.getMessage()); // Muestra alerta de error general  00009423
+            showErrorAlert(E.getMessage()); //00009423 Muestra alerta de error general  
         }
     }
 
     @FXML
     private void InsertClient() { // Método para insertar cliente  00009423
-        if (txtFirstName.getText().isEmpty() || txtLastname.getText().isEmpty() || txtDirection.getText().isEmpty() || txtPhone.getText().length() > 8 || txtPhone.getText().isEmpty()) { // Verifica campos vacíos  00009423
-            showErrorAlert("Make sure you write the fields correctly "); // Muestra alerta de error  00009423
+        if (txtFirstName.getText().isEmpty() || txtLastname.getText().isEmpty() || txtDirection.getText().isEmpty() || txtPhone.getText().length() > 8 || txtPhone.getText().isEmpty()) { //00009423 Verifica campos vacíos  
+            showErrorAlert("Make sure you write the fields correctly "); //00009423 Muestra alerta de error  
             return; // Sale del método
         }
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!"); // Conecta a la base de datos  00009423
-            PreparedStatement st = conn.prepareStatement("INSERT INTO client (client_first_name, client_last_name, client_direction, client_phone_number) VALUES (?, ?, ?, ?)"); // Prepara la consulta SQL  00009423
-            st.setString(1, txtFirstName.getText()); // Establece el nombre del cliente  00009423
-            st.setString(2, txtLastname.getText()); // Establece el apellido del cliente  00009423
-            st.setString(3, txtDirection.getText()); // Establece la dirección del cliente  00009423
-            st.setString(4, txtPhone.getText()); // Establece el teléfono del cliente  00009423
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!"); //00009423 Conecta a la base de datos  
+            PreparedStatement st = conn.prepareStatement("INSERT INTO client (client_first_name, client_last_name, client_direction, client_phone_number) VALUES (?, ?, ?, ?)"); //00009423 Prepara la consulta SQL  
+            st.setString(1, txtFirstName.getText()); //00009423 Establece el nombre del cliente  
+            st.setString(2, txtLastname.getText()); //00009423 Establece el apellido del cliente  
+            st.setString(3, txtDirection.getText()); //00009423 Establece la dirección del cliente  
+            st.setString(4, txtPhone.getText()); //00009423 Establece el teléfono del cliente  
             try {
-                int result = st.executeUpdate(); // Ejecuta la consulta  00009423
-                showSuccesAlert("Added client successfully"); // Muestra alerta de éxito  00009423
-                clearFields(); // Limpia los campos de texto  00009423
+                int result = st.executeUpdate(); //00009423 Ejecuta la consulta  
+                showSuccesAlert("Added client successfully"); //00009423 Muestra alerta de éxito  
+                clearFields(); //00009423 Limpia los campos de texto  
             } catch (SQLException e) {
-                showErrorAlert(e.getMessage()); // Muestra alerta de error SQL  00009423
+                showErrorAlert(e.getMessage()); //00009423 Muestra alerta de error SQL  
             }
         } catch (Exception E) {
-            showErrorAlert(E.getMessage()); // Muestra alerta de error general 00009423
+            showErrorAlert(E.getMessage()); //00009423 Muestra alerta de error general 
         }
     }
 
@@ -384,15 +384,15 @@ public class InsertsController implements Initializable { // Define la clase pri
     }
 
     @FXML
-    protected void onReturnbtn_Click(ActionEvent event) throws IOException {
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException { //00080323 Function to return to the pricipal view 
         try {
-            root = FXMLLoader.load(getClass().getResource("initial-view.fxml"));
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+            root = FXMLLoader.load(getClass().getResource("initial-view.fxml")); //00080323 sets the root of the principal view 
+        } catch (NullPointerException e) { //00080323 Manejamos la exepción.
+            e.printStackTrace(); // 00080323 Imprimimos exepción.
         }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //00080323 Método para  obtener la ventana actual.
+        scene = new Scene(root); // 00080323 Instanciamos una nueva escena .
+        stage.setScene(scene); //00080323 Cambiamos la escena de la ventana.
+        stage.show(); //00080323 Mostramos nueva escena en la ventana.
     }
 }
