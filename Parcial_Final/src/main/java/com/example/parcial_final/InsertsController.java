@@ -309,7 +309,7 @@ public class InsertsController implements Initializable { // Define la clase pri
             } catch (SQLException e) {
                 showErrorAlert(e.getMessage()); // Muestra alerta de error SQL 00005923
             }
-        }catch (Exception e){
+        }catch (Exception e){//00080323 Maneja la exepcion.
             showErrorAlert(e.getMessage());
         }
 
