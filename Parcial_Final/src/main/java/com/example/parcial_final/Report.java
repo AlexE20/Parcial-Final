@@ -2,7 +2,7 @@ package com.example.parcial_final;
 
 public class Report {
     private String clientName;//00009423 Atributo del nombre del cliente
-    private double amountOfMoney;// 00009423Atributo del total de dinero
+    private double amountOfMoney;// 00009423 Atributo del total de dinero
 
     public Report(String clientName, double amountOfMoney) {//Constructor
         this.clientName = clientName;//00009423 Asigna el nombre del cliente
