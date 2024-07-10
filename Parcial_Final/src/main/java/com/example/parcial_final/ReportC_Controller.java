@@ -94,11 +94,11 @@ public class ReportC_Controller {//00080323 Clase responsable de controlar la vi
             System.out.println(e);//00080323 Se imprime la exepción.
         }
 
-        return cards;//Retornamos el ArrayList de tarjetas solicitado.
+        return cards;//00080323 Retornamos el ArrayList de tarjetas solicitado.
     }
 
     @FXML
-    protected void onReturnbtn_Click(ActionEvent event) throws IOException {//Método para retornar a la ventana principal.
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException {//00080323 Método para retornar a la ventana principal.
         try {
             root = FXMLLoader.load(getClass().getResource("initial-view.fxml"));//00080323 Cargamos la pantalla inicial.
         } catch (NullPointerException e) {//00080323 Manejamos la exepción.
@@ -123,7 +123,7 @@ public class ReportC_Controller {//00080323 Clase responsable de controlar la vi
 
         try (FileWriter writer = new FileWriter(fileName)) {//00080323 Try-Catch para asegurar que el FileWriter se cierre automáticamente
             writer.write("Credit Cards:\n");//00080323 Encabezado para las tarjetas crédito.
-            for (Card card : creditCards) {//Iteramos sobre las tarjetas de crédito encontradas.
+            for (Card card : creditCards) {//00080323 Iteramos sobre las tarjetas de crédito encontradas.
                 writer.write(card.getCardNumberCensored() + "\n");//00080323 Censuramos y imprimos en el archivo el # de tarjeta.
             }
 

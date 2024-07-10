@@ -1,15 +1,15 @@
 package com.example.parcial_final;
 
 public class Report {
-    private String clientName;//Atributo del nombre del cliente
-    private double amountOfMoney;//Atributo del total de dinero
+    private String clientName;//00009423 Atributo del nombre del cliente
+    private double amountOfMoney;// 00009423Atributo del total de dinero
 
     public Report(String clientName, double amountOfMoney) {//Constructor
-        this.clientName = clientName;// Asigna el nombre del cliente
-        this.amountOfMoney = amountOfMoney;//Asigna la cantidad de dinero del cliente
+        this.clientName = clientName;//00009423 Asigna el nombre del cliente
+        this.amountOfMoney = amountOfMoney;//00009423 Asigna la cantidad de dinero del cliente
     }
 
-    //Setter y Getters
+    //00009423 Setter y Getters
     public String getClientName() {
         return clientName;
     }
