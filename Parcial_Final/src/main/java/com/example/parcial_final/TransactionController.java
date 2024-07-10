@@ -25,9 +25,9 @@ import java.util.ResourceBundle;
 
 public class TransactionController implements Initializable { // Define la clase principal  00009423
 
-    private Parent root;//00080323 Ventana padre.
-    private Stage stage;
-    private Scene scene;
+    private Parent root;//00080323 Es el nodo ruta del archivo FXML.
+    private Stage stage;//00080323 Es la ventana de la aplicación
+    private Scene scene;//00080323 Es el contenido adentro de la ventana, es decir lo que cambia dinámicamente.
 
 
     @FXML
@@ -147,21 +147,21 @@ public class TransactionController implements Initializable { // Define la clase
             PreparedStatement st = conn.prepareStatement("UPDATE transaction SET money_amount = ?, description = ?, id_card = ?, transaction_date = ? WHERE  id_transaction = ?;"); // Prepara la consulta SQL 00009423
 
 
-            st.setDouble(1, Double.parseDouble(txtMoneyAmount.getText())); // Establece la cantidad de dinero 00009423
+            st.setDouble(1, Double.parseDouble(txtMoneyAmount.getText())); //Establece la cantidad de dinero 00009423
             st.setString(2, txtDesc.getText()); // Establece la descripción 00009423
-            st.setInt(3, Integer.parseInt(txtIdCard.getText())); // Establece el ID de la transacción 00009423
+            st.setInt(3, Integer.parseInt(txtIdCard.getText())); //Establece el ID de la transacción 00009423
             st.setDate(4, Date.valueOf(dpTransaction.getValue())); // Establece la fecha de la transacción por el datePicker 00005923
-            st.setInt(5, Integer.parseInt(txtIdTransactionDel.getText())); // Establece el ID de la tarjeta 00009423
+            st.setInt(5, Integer.parseInt(txtIdTransactionDel.getText())); //Establece el ID de la tarjeta 00009423
             try {
-                int result = st.executeUpdate(); // Ejecuta la consulta
+                int result = st.executeUpdate(); //00009423 Ejecuta la consulta
                 loadTransactionsFromDatabase();
-                showSuccesAlert("Updated transaction successfully"); // Muestra alerta de éxito 00009423
+                showSuccesAlert("Updated transaction successfully"); //Muestra alerta de éxito 00009423
                 clearFields(); // Limpia los campos de texto 00009423
             } catch (SQLException e) {
-                showErrorAlert(e.getMessage()); // Muestra alerta de error SQL 00009423
+                showErrorAlert(e.getMessage()); //Muestra alerta de error SQL 00009423
             }
         } catch (Exception e) {
-            showErrorAlert(e.getMessage()); // Muestra alerta de error general 00009423
+            showErrorAlert(e.getMessage()); //Muestra alerta de error general 00009423
         }
     }
 
@@ -171,22 +171,22 @@ public class TransactionController implements Initializable { // Define la clase
     private void DeleteTransaction() { // Método para eliminar transacción
         if (txtIdTransactionDel.getText().isEmpty()) { //00005923 Evalua si es posible escribir en el textfield
             showErrorAlert("Please enter the Transaction ID to delete"); //muestra un mensaje de error
-            return;
+            return;// 00005923no retorna nada
         }
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");
-            PreparedStatement st = conn.prepareStatement("DELETE FROM transaction WHERE id_transaction = ?");
-            st.setInt(1, Integer.parseInt(txtIdTransactionDel.getText()));
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");// Conecta a la base de datos 00009423
+            PreparedStatement st = conn.prepareStatement("DELETE FROM transaction WHERE id_transaction = ?");//Prepara la consulta 00009423
+            st.setInt(1, Integer.parseInt(txtIdTransactionDel.getText())); //Pasa los parametros necesarios a la consulta 00009423
             try {
                 int result = st.executeUpdate(); // Ejecuta la consulta 00005923
-                loadTransactionsFromDatabase();
+                loadTransactionsFromDatabase();//00005923 Carga todos los registros de la base de datos
                 showSuccesAlert("Deleted transaction successfully"); // Muestra alerta de éxito 00005923
                 clearFields(); // Limpia los campos de texto 00005923
             } catch (SQLException e) {
                 showErrorAlert(e.getMessage()); // Muestra alerta de error SQL 00005923
             }
         }catch (Exception e){
-            showErrorAlert(e.getMessage());
+            showErrorAlert(e.getMessage());//00005923 muestra el mensaje de error
         }
 
     }
@@ -222,15 +222,15 @@ public class TransactionController implements Initializable { // Define la clase
     }
 
     @FXML
-    protected void onReturnbtn_Click(ActionEvent event) throws IOException {
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException { //00080323 Método para retornar a la ventana principal.
         try {
-            root = FXMLLoader.load(getClass().getResource("crud-view.fxml"));
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+            root = FXMLLoader.load(getClass().getResource("crud-view.fxml")); //00080323 Cargamos la pantalla inicial
+        } catch (NullPointerException e) { //00080323 Manejamos la exepción.
+            e.printStackTrace(); // 00080323 Imprimimos exepción.
         }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //00080323 Método para  obtener la ventana actual.
+        scene = new Scene(root); // 00080323 Instanciamos una nueva escena .
+        stage.setScene(scene); //00080323 Cambiamos la escena de la ventana.
+        stage.show(); //00080323 Mostramos nueva escena en la ventana.
     }
 }

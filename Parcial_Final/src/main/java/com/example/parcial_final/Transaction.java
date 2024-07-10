@@ -23,6 +23,7 @@ public class Transaction {
         this.purchaseDate = transactionDate; //00106123 Initialize the purchase Date
     }
 
+    //00106123 getters and setters
     public LocalDate getPurchaseDate() { //00106123 Getter for purchaseDate
         return purchaseDate;
     }

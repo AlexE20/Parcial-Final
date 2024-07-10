@@ -121,7 +121,7 @@ public class ReportD_Controller implements Initializable {
     public void generateFile() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"); //00080323 Método para generar archivo txt.
         LocalDateTime now = LocalDateTime.now(); //00080323 Obtiene la fecha y hora actual.
-        String path = "Reports/";  String path= "Reports/";//00080323 Ruta donde se quiere agregar el archivo.
+        String path= "Reports/";//00080323 Ruta donde se quiere agregar el archivo.
 
         try { // 00106123 se intenta ejecutar el siguiente bloque de codigo
             Files.createDirectories(Paths.get(path)); //00106123 Revisa si la carpeta que se le paso existe, y si no, la crea
