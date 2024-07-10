@@ -15,6 +15,7 @@ public class Client {
         this.phone = phone;
     }
 
+    //Getters and setters
     public int getId() {
         return id;
     }
