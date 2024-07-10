@@ -387,12 +387,12 @@ public class InsertsController implements Initializable { // Define la clase pri
     protected void onReturnbtn_Click(ActionEvent event) throws IOException { //00080323 Function to return to the pricipal view 
         try {
             root = FXMLLoader.load(getClass().getResource("initial-view.fxml")); //00080323 sets the root of the principal view 
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+        } catch (NullPointerException e) { //00080323 Manejamos la exepción.
+            e.printStackTrace(); // 00080323 Imprimimos exepción.
         }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //00080323 Método para  obtener la ventana actual.
+        scene = new Scene(root); // 00080323 Instanciamos una nueva escena .
+        stage.setScene(scene); //00080323 Cambiamos la escena de la ventana.
+        stage.show(); //00080323 Mostramos nueva escena en la ventana.
     }
 }
