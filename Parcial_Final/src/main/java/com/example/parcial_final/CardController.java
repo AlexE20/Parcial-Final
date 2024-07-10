@@ -69,6 +69,7 @@ public class CardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {//00106123 Metodo de inicializacion que se activa al iniciar el programa
         cmbFacilitator.setItems(getFacilitatorIds()); //00005923 Inicializa los ids que estaran en el comboBox
+        showInfoAlert("In case you want to make an update or a deletion, you must write the id of \n the registre, if you want to \n insert, the id is not necessary."); //Muestra el mensaje al iniciar esta ventana 00009423
         initializeTableColumns();
         loadCardsFromDatabase();
     }
@@ -86,7 +87,7 @@ public class CardController implements Initializable {
         ObservableList<Card> cards = FXCollections.observableArrayList();
 
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT id_card, card_number, expiration_date, card_type, id_facilitator, id_client FROM card");
 
@@ -114,7 +115,7 @@ public class CardController implements Initializable {
         String query = "SELECT id_facilitator FROM facilitator"; //00005923 Es un SELECT que escoge los ids de la tabla Facilitador //00005923 Inicia la conexion con la Base de datos
         ObservableList<Integer> facilitatorIds = FXCollections.observableArrayList(); //00005923 Es una lista que guardara dentro de una ObservableList
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");
             Statement st = conn.createStatement(); //00005923 Crea un declaracion que sera usada para generar un resultado
             ResultSet rs = st.executeQuery(query);  //00005923 Executa el resultado y guarda los valores que la Query selecciono
 
@@ -134,7 +135,7 @@ public class CardController implements Initializable {
             return; //00009423 Sale del método
         }
         try {//00106123 intenta ejecutar el bloque de codigo
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!"); //00009423 Conecta a la base de datos
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004"); //00009423 Conecta a la base de datos
             PreparedStatement st = conn.prepareStatement("INSERT INTO card (card_number, expiration_date, card_type, id_facilitator, id_client) VALUES (?, ?, ?, ?, ?)"); //00009423 Prepara la consulta SQL insertando en card los valores necesarios
             st.setString(1, txtCardNumber.getText()); //00009423 Establece el número de tarjeta
             st.setDate(2, Date.valueOf(dpCard.getValue())); //00009423 Establece la fecha de expiración por medio del date picker
@@ -161,11 +162,11 @@ public class CardController implements Initializable {
             return; //00009423 Sale del método
         }
         try {//00106123 intenta ejecutar el bloque de codigo
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!"); //00009423 Conecta a la base de datos
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004"); //00009423 Conecta a la base de datos
             PreparedStatement st = conn.prepareStatement("UPDATE card SET card_number = ?, expiration_date = ?, card_type = ?, id_facilitator = ?,id_client=? WHERE  id_card = ?;"); //00009423 Prepara la consulta SQL haciendo pdate y actualizando los campos deseados
 
 
-            st.setString(1, txtCardNumber.getText()); // 00009423Establece el número de tarjeta
+            st.setString(1, txtCardNumber.getText()); // 00009423 Establece el número de tarjeta
             st.setDate(2, Date.valueOf(dpCard.getValue())); //00009423 Establece la fecha de expiración por el datePicker
             st.setString(3, txtCardType.getText()); //00009423 Establece el tipo de tarjeta
             st.setInt(4, cmbFacilitator.getSelectionModel().getSelectedItem()); //00009423 Establece el ID del facilitador
@@ -192,11 +193,12 @@ public class CardController implements Initializable {
             return;
         }
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");
             PreparedStatement st = conn.prepareStatement("DELETE FROM card WHERE id_card = ?");
             st.setInt(1, Integer.parseInt(txtIdCard.getText()));
             try {
-                int result = st.executeUpdate(); // Ejecuta la consulta 00005923
+                st.executeUpdate(); // Ejecuta la consulta 00005923
+                loadCardsFromDatabase();
                 showSuccesAlert("Deleted Card successfully"); // Muestra alerta de éxito 00005923
                 clearFields(); // Limpia los campos de texto 00005923
             } catch (SQLException e) {
@@ -208,20 +210,27 @@ public class CardController implements Initializable {
 
     }
 
-    private void showErrorAlert(String message) { //00009423 Método para mostrar alerta de error
-        Alert alert = new Alert(Alert.AlertType.ERROR); //00009423 Crea una alerta de tipo error
-        alert.setTitle("Error!"); //00009423 Establece el título de la alerta
-        alert.setHeaderText("Se ha producido un error!"); //00009423 Establece el encabezado de la alerta
-        alert.setContentText(message); //00009423 Establece el mensaje de contenido de la alerta
-        alert.showAndWait(); //00009423 Muestra la alerta y espera a que el usuario la cierre
+    private void showErrorAlert(String message) { // Método para mostrar alerta de error  00009423
+        Alert alert = new Alert(Alert.AlertType.ERROR); // Crea una alerta de tipo error 00009423
+        alert.setTitle("Error!"); // Establece el título de la alerta 00009423
+        alert.setHeaderText("An error has occurred!"); // Establece el encabezado de la alerta 00009423
+        alert.setContentText(message); // Establece el mensaje de contenido de la alerta 00009423
+        alert.showAndWait(); // Muestra la alerta y espera a que el usuario la cierre 00009423
     }
 
-    private void showSuccesAlert(String message) { // 00009423Método para mostrar alerta de éxito
-        Alert alert = new Alert(Alert.AlertType.INFORMATION); //00009423 Crea una alerta de tipo información
-        alert.setTitle("Exito"); // 00009423Establece el título de la alerta
-        alert.setHeaderText("Se ha realizado con exito"); //00009423 Establece el encabezado de la alerta
-        alert.setContentText(message); //00009423 Establece el mensaje de contenido de la alerta
-        alert.showAndWait(); //00009423 Muestra la alerta y espera a que el usuario la cierre
+    private void showSuccesAlert(String message) { // Método para mostrar alerta de éxito 00009423
+        Alert alert = new Alert(Alert.AlertType.INFORMATION); // Crea una alerta de tipo información 00009423
+        alert.setTitle("Success"); // Establece el título de la alerta 00009423
+        alert.setHeaderText("Successful Operation!"); // Establece el encabezado de la alerta 00009423
+        alert.setContentText(message); // Establece el mensaje de contenido de la alerta 00009423
+        alert.showAndWait(); // Muestra la alerta y espera a que el usuario la cierre 00009423
+    }
+    private void showInfoAlert(String message){ //Metodo para mostrar informacion 00009423
+        Alert alert=new Alert(Alert.AlertType.INFORMATION); // Crea una alerta de informacion 00009423
+        alert.setTitle("Information"); //Establece el titulo de la alerta 00009423
+        alert.setHeaderText("Suggestion:"); //Establece el encabezado de la alerta 00009423
+        alert.setContentText(message); //Establece el mensaje y el contenido 00009423
+        alert.showAndWait(); // Muestra la alerta y espera a que el usuario la cierre 00009423
     }
 
     private void clearFields() { //00009423 Método para limpiar campos de texto
@@ -235,7 +244,7 @@ public class CardController implements Initializable {
     @FXML
     protected void onReturnbtn_Click(ActionEvent event) throws IOException {
         try {
-            root = FXMLLoader.load(getClass().getResource("initial-view.fxml"));
+            root = FXMLLoader.load(getClass().getResource("crud-view.fxml"));
         } catch (NullPointerException e) {
             e.printStackTrace();
         }

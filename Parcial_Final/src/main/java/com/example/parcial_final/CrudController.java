@@ -32,7 +32,7 @@ public class CrudController {
     @FXML
     protected void onClientViewbtn_Click(ActionEvent event)throws IOException {//00106123 Método para cambiar a la escena a la de cliente
         try{
-            root = FXMLLoader.load(getClass().getResource("card-view.fxml"));
+            root = FXMLLoader.load(getClass().getResource("client-view.fxml"));
         }catch(NullPointerException e){
             e.printStackTrace();
         }

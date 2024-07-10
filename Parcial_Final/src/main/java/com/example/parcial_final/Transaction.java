@@ -2,16 +2,27 @@ package com.example.parcial_final;
 import java.time.LocalDate;
 
 public class Transaction {
-    private LocalDate purchaseDate; //00106123 Declares purchaseDate attribute as LocalDate
-    private double amount; //00106123 Declares amount attribute as double
-    private String description; //00106123 Declares description attribute as String
+    private int id;
+
+    private int cardId;
+    private LocalDate purchaseDate; //Declares purchaseDate attribute as LocalDate
+    private double amount; //Declares amount attribute as double
+    private String description; //Declares description attribute as String
 
     public Transaction(LocalDate purchaseDate, double amount, String description) {
-        this.purchaseDate = purchaseDate; //00106123 Initializes purchaseDate
-        this.amount = amount; //00106123Initializes amount
-        this.description = description; //00106123 Initializes description
+        this.purchaseDate = purchaseDate; //Initializes purchaseDate
+        this.amount = amount; //Initializes amount
+        this.description = description; //Initializes description
     }
-//00106123getters and setters
+
+    public Transaction(int id, double moneyAmount, String description, int cardId, LocalDate transactionDate) {
+        this.id = id;
+        this.amount = moneyAmount;
+        this.description = description;
+        this.cardId = cardId;
+        this.purchaseDate = transactionDate;
+    }
+
     public LocalDate getPurchaseDate() { //Getter for purchaseDate
         return purchaseDate;
     }
@@ -34,6 +45,22 @@ public class Transaction {
 
     public void setDescription(String description) { //Setter for description
         this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(int cardId) {
+        this.cardId = cardId;
     }
 }
 

@@ -4,48 +4,26 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parcial_final.InsertsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.parcial_final.ClientController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" />
-            <VBox prefHeight="200.0" prefWidth="100.0" />
-            <VBox prefHeight="200.0" prefWidth="100.0" />
-            <VBox prefHeight="200.0" prefWidth="100.0" />
-            <VBox prefHeight="200.0" prefWidth="100.0" />
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <TextField fx:id="txtIdCardUpdate">
-                     <VBox.margin>
-                        <Insets right="5.0" />
-                     </VBox.margin>
-                  </TextField>
-               </children>
-            </VBox>
-         </children>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-      </HBox>
-      <HBox prefHeight="210.0" prefWidth="600.0" spacing="20.0">
-         <padding>
-            <Insets left="245.0" />
-         </padding>
+            <Label text="Clients" />
+         </children></HBox>
+      <HBox prefHeight="283.0" prefWidth="600.0">
          <children>
-            <TableView prefHeight="201.0" prefWidth="427.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
+            <TableView fx:id="tvClients" prefHeight="250.0" prefWidth="683.0">
+               <columns>
+                  <TableColumn fx:id="colId" prefWidth="50.0" text="id" />
+                  <TableColumn fx:id="colFirstName" prefWidth="130.0" text="First name" />
+                  <TableColumn fx:id="colLastName" prefWidth="145.0" text="Last name" />
+                  <TableColumn fx:id="colAddress" prefWidth="136.0" text="Address" />
+                  <TableColumn fx:id="colPhone" minWidth="0.0" prefWidth="153.0" text="Phone" />
+               </columns>
             </TableView>
          </children>
       </HBox>
-      <Label text="Client">
-         <VBox.margin>
-            <Insets left="280.0" />
-         </VBox.margin>
-      </Label>
-      <HBox prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+      <HBox prefHeight="110.0" prefWidth="600.0" spacing="40.0">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
@@ -61,8 +39,8 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label text="Direction" />
-                  <TextField fx:id="txtDirection" />
+                  <Label text="Address" />
+                  <TextField fx:id="txtAddress" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
@@ -71,21 +49,48 @@
                   <TextField fx:id="txtPhone" />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-               <children>
-                  <Label text="ID Client" />
-                  <TextField fx:id="txtIdClientUpdate" />
-               </children>
-               <padding>
-                  <Insets right="10.0" />
-               </padding>
-            </VBox>
          </children>
          <VBox.margin>
             <Insets />
          </VBox.margin>
          <padding>
             <Insets left="30.0" />
+         </padding>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="btnInsertC" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#InsertClient" prefHeight="14.0" prefWidth="64.0" text="Insert" HBox.hgrow="NEVER" />
+         </children>
+      </HBox>
+      <HBox prefHeight="107.0" prefWidth="600.0" spacing="20.0">
+         <children>
+            <VBox prefHeight="45.0" prefWidth="121.0">
+               <children>
+                  <Label text="ID Client" />
+                  <TextField fx:id="txtIdClient" prefHeight="6.0" prefWidth="112.0" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button fx:id="btnDeleteC" mnemonicParsing="false" onAction="#DeleteClient" prefHeight="53.0" prefWidth="90.0" text="Delete" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button fx:id="btnUpdateC" mnemonicParsing="false" onAction="#UpdateClient" prefHeight="22.0" prefWidth="90.0" text="Update" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </VBox>
+            <Button fx:id="btnReturn" mnemonicParsing="false" onAction="#onReturnbtn_Click" text="Return" />
+         </children>
+         <padding>
+            <Insets left="245.0" />
          </padding>
       </HBox>
    </children>

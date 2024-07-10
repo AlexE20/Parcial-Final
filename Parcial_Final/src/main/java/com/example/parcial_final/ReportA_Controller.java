@@ -78,7 +78,7 @@ public class ReportA_Controller implements Initializable { //00106123 Implementi
     private ArrayList<Transaction> getTransactions(int clientId, LocalDate initialDate, LocalDate finalDate) {
         ArrayList<Transaction> transactions = new ArrayList<>(); //00106123 A new arraylist of Transactions is declared
         try { //00106123 Tries to excecute the following block of code
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!"); //00106123 Establishes the connection to the database
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004"); //00106123 Establishes the connection to the database
             PreparedStatement pst = conn.prepareStatement( //00106123 Prepares the SQL statement to retrieve transactions through a query
                             "SELECT t.transaction_date, t.money_amount, t.description " + //00106123 Selects date, amount, and description fields
                             "FROM transaction t " + //00106123 From the transaction table with alias 't'

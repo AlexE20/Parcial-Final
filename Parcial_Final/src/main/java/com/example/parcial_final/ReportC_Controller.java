@@ -75,7 +75,7 @@ public class ReportC_Controller {//00080323 Clase responsable de controlar la vi
     private ArrayList<Card> getCards(int clientId, String cardType) {//00080323 Método para obtener las tarjetas dado un id de cliente y un tipo de tarjeta.
         ArrayList<Card> cards = new ArrayList<>();//00080323 Se crea un ArrayList de tarjetas vacío.
         try {//00080323 Try-catch para establecer conexión con bD.
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!");//00080323 Establecer conexión con bD.
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");//00080323 Establecer conexión con bD.
             PreparedStatement pst = conn.prepareStatement(//00080323 Preparamos el statement de sql dado un id y tipo de tarjeta.
                     "SELECT t.card_number " +
                             "FROM client c " +

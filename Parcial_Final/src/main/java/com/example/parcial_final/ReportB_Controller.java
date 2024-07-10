@@ -62,18 +62,18 @@ public class ReportB_Controller implements Initializable {
     @FXML
     private void reportB() {
         if (txtIdClient.getText().isEmpty() || txtYear.getText().isEmpty() || cmbMonth.getSelectionModel().getSelectedItem() == null) { //00009423 Comprueba si algun campo de la interfaz esta vacio o sin seleccionar
-            showErrorAlert("Campo obligatorio no seleccionado"); //00009423 Muestra un mensaje de alerta si entra en el if
+            showErrorAlert("Mandatory field not selected"); //00009423 Muestra un mensaje de alerta si entra en el if
             return; //00009423 No se realiza nada
         }
         try {//00009423 Intenta la conexion con la base de datos
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root", "Elchocochele04!");//00009423 Realizando la conexion a la base de datos
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");//00009423 Realizando la conexion a la base de datos
             PreparedStatement st = conn.prepareStatement("SELECT c.client_first_name, c.client_last_name, SUM(t.money_amount) AS total_gastado FROM client c INNER JOIN card ca ON c.id_client = ca.id_client INNER JOIN transaction t ON ca.id_card = t.id_card WHERE c.id_client = ? AND YEAR(t.transaction_date) = ? AND MONTH(t.transaction_date) = ? GROUP BY c.client_first_name, c.client_last_name;");//00009423 Selecciona al cliente , al mes y al año para devolver el total que el cliente gasto en ese tiempo
             st.setInt(1, Integer.parseInt(txtIdClient.getText()));//00009423 Asigna el primer parametro que seria el id
             st.setInt(2, Integer.parseInt(txtYear.getText()));//00009423 Asigna el segundo parametro que seria el año
             st.setInt(3, cmbMonth.getSelectionModel().getSelectedIndex() + 1);//00009423Asigna el tercer parametro que seria el mes, y se le suma 1 porque el selected index empieza desde 0
             ResultSet rs = st.executeQuery(); //00009423 Se ejecuta la consulta
             if (!rs.isBeforeFirst()) {//00009423 Un if quE dictamina si la consulta es vacia (No hay resultados encontrados)
-                showErrorAlert("No se encontraron resultados ");//00009423 Si entra al if, muestra la alerta que no se encontraron resultados
+                showErrorAlert("Results where not found ");//00009423 Si entra al if, muestra la alerta que no se encontraron resultados
                 return;//00009423 No realiza lo demas
             }
             ObservableList<Report> reportList = FXCollections.observableArrayList();//00009423 Crea una lista observable vacía para almacenar objetos de tipo Report.
@@ -94,7 +94,7 @@ public class ReportB_Controller implements Initializable {
     private void showErrorAlert(String message) { //00009423Metodo para crear la alerta
         Alert alert = new Alert(Alert.AlertType.ERROR);//00009423Crea una nueva alerta de tipo error
         alert.setTitle("Error!"); //00009423 Le asigna un titulo
-        alert.setHeaderText("Se ha producido un error!"); //00009423 Le asigna el mensaje
+        alert.setHeaderText("An error has occurred!"); //00009423 Le asigna el mensaje
         alert.setContentText(message);//00009423Si hay algun mensaje contexto por ejemplo uno de SQL, lo manda a llamar de esta manera
         alert.showAndWait();//00009423 Cuando la alerta aparece espera a que el usuario precione el boton:
     }

@@ -74,7 +74,7 @@ public class ReportD_Controller implements Initializable {
         String query = "SELECT facilitator_name FROM facilitator"; //00005923 Is a SELECT that chooses al the names of the Facilitators in the table of it.
          ObservableList<String> facilitatorNames = FXCollections.observableArrayList(); //00005923Is a list that will save Strings in an ObservableList
         try{ //
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco","root","Elchocochele04!"); //00005923 starts the connection with the Data Base
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank","root","apolo2004"); //00005923 starts the connection with the Data Base
             Statement st = conn.createStatement(); //00005923 Creates a statement that will be used to generate a result.
             ResultSet rs = st.executeQuery(query); //00005923 Execute the result and saves the values that the Query selects.
 
@@ -101,7 +101,7 @@ public class ReportD_Controller implements Initializable {
 
         ObservableList<ClientTransaction> transactions = FXCollections.observableArrayList(); //00005923 Is a list that will save objects of the type ClientTransaction similar to the arrayList
         try{ //00005923 tries to excecute the block of code
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBanco", "root","Elchocochele04!"); //00005923 Starts the connection again.
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root","apolo2004"); //00005923 Starts the connection again.
             Statement st = conn.createStatement(); //00005923 generate a statement for this method to be used.
             ResultSet rs = st.executeQuery(query); //00005923 executes the query and saves the values.
             while (rs.next()){ //00005923 While there's another result keeps
