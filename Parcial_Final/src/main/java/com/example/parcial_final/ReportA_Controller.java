@@ -26,9 +26,9 @@ import java.util.ResourceBundle;
 
 public class ReportA_Controller implements Initializable { //00106123 Implementing the interface Initializable
 
-    private Parent root;//00080323 Ventana padre.
-    private Stage stage;
-    private Scene scene;
+    private Parent root;//00106123 Clase base
+    private Stage stage;//00106123 Contenedor(ventana prncipal)
+    private Scene scene;//00106123 Escena del progama
 
     @FXML
     private Button btnReturn;//00080323 Button to return to the home window.

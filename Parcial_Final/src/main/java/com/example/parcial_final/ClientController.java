@@ -160,7 +160,7 @@ public class ClientController implements Initializable { // Define la clase prin
     private void DeleteClient() { // Método para eliminar cliente
         if (txtIdClient.getText().isEmpty()) { //00005923 Evalua si es posible escribir en el textfield
             showErrorAlert("Please enter the Client ID to delete"); //muestra un mensaje de error 00005923
-            return;
+            return;// no retorna nada 00005923
         }
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");
@@ -175,7 +175,7 @@ public class ClientController implements Initializable { // Define la clase prin
                 showErrorAlert(e.getMessage()); // Muestra alerta de error SQL 00005923
             }
         }catch (Exception e){
-            showErrorAlert(e.getMessage());
+            showErrorAlert(e.getMessage());// Muestra alerta de error  00005923
         }
     }
 
@@ -212,15 +212,15 @@ public class ClientController implements Initializable { // Define la clase prin
     }
 
     @FXML
-    protected void onReturnbtn_Click(ActionEvent event) throws IOException {
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException { // 00106123 Método para regresar a la escena inicial
         try {
-            root = FXMLLoader.load(getClass().getResource("crud-view.fxml"));
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+            root = FXMLLoader.load(getClass().getResource("crud-view.fxml")); // 00106123 Carga la vista inicial
+        } catch (NullPointerException e) { // 00106123 Captura la excepción de puntero nulo
+            e.printStackTrace(); // 00106123 Imprime el stack trace
         }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // 00106123 Obtiene la ventana actual
+        scene = new Scene(root); // 00106123 Crea una nueva escena con la vista cargada
+        stage.setScene(scene); // 00106123 Establece la nueva escena en la ventana
+        stage.show(); // 00106123 Muestra la ventana
     }
 }
