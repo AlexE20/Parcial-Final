@@ -1,0 +1,9 @@
+Purchase date: 2024-07-01
+Amount: 100.0
+Description: Purchase at Little Caesar
+Purchase date: 2024-04-15
+Amount: 50.0
+Description: Purchase at ChatGPT
+Purchase date: 2024-07-20
+Amount: 100.0
+Description: Purchase at Bank

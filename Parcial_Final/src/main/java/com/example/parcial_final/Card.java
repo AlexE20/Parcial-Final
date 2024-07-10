@@ -75,15 +75,15 @@ public class Card {
     }
 
     public StringProperty cardNumberProperty() {
-        return cardNumber; // 00009423 Obtiene la propiedad del número de la tarjeta
+        return cardNumber; // 00009423 Obtiene la propiedad(JavaFX) del número de la tarjeta
     }
 
     public String getCardNumberCensored() {
         String cardNum = cardNumber.get(); // 00009423 Obtiene el número de la tarjeta
         if (cardNum.equals("N/A")) {
-            return cardNum; // 00009423 Retorna "N/A" si el número es "N/A"
+            return cardNum; // 00009423 Retorna N/A si el número es N/A
         }
-        return "XXXX XXXX XXXX " + cardNum.substring(cardNum.length() - 4); // 00009423 Censura el número de la tarjeta, mostrando solo los últimos 4 dígitos
+        return "XXXX XXXX XXXX " + cardNum.substring(cardNum.length() - 4); // 00009423 Censura el número de la tarjeta, mostrando solo los últimos 4 dígitos por medio de un subSTring.
     }
 
     public StringProperty cardNumberCensoredProperty() {

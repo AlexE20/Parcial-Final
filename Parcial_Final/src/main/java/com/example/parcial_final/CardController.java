@@ -22,7 +22,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class CardController implements Initializable {
+public class CardController implements Initializable {//00080323 Clase para aparatado de tarjetas.
     private Parent root; // 00080323 Ventana padre
     private Stage stage; // 00080323 Escenario
     private Scene scene; // 00080323 Escena

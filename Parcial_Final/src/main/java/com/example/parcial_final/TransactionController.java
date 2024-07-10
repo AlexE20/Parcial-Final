@@ -46,61 +46,61 @@ public class TransactionController implements Initializable { // Define la clase
 
 
     @FXML
-    private Button btnReturn;
+    private Button btnReturn;//00080323 Boton de regreso.
 
 
     @FXML
-    private TableView<Transaction> tableView;
+    private TableView<Transaction> tableView;//00080323 Tv de transacciones
     @FXML
-    private TableColumn<Transaction, Integer> colId;
+    private TableColumn<Transaction, Integer> colId;//00080323 Columna para ids.
     @FXML
-    private TableColumn<Transaction, Double> colMoneyAmount;
+    private TableColumn<Transaction, Double> colMoneyAmount;//00080323 Columna para monto.
     @FXML
-    private TableColumn<Transaction, String> colDescription;
+    private TableColumn<Transaction, String> colDescription;//00080323 columna para descripcion.
     @FXML
-    private TableColumn<Transaction, Integer> colCardId;
+    private TableColumn<Transaction, Integer> colCardId;//00080323 Columna para cardID.
     @FXML
-    private TableColumn<Transaction, LocalDate> colTransactionDate;
+    private TableColumn<Transaction, LocalDate> colTransactionDate;//00080323 Columna para fecha.
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) { // Método de inicialización  00009423
 
-        initializeTableColumns();
-        loadTransactionsFromDatabase();
+        initializeTableColumns();//00080323 Se inicializan las columnas
+        loadTransactionsFromDatabase();// 00080323 Se cargan los datos de la dB.
         showInfoAlert("In case you want to make an update or a deletion, you must write the id of \n the registre, if you want to \n insert, the id is not necessary."); //Muestra el mensaje al iniciar esta ventana 00009423
     }
 
     private void initializeTableColumns() {
-        colId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-        colMoneyAmount.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getAmount()).asObject());
-        colDescription.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));
-        colCardId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCardId()).asObject());
-        colTransactionDate.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getPurchaseDate()));
+        colId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());//00080323 Se llenan los valores de la columna para ids, por medio de una expresion lamda el cual utiliza propiedades de Java Fx para llenar la columna.
+        colMoneyAmount.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getAmount()).asObject());//0008323 Llena los valores del monto.
+        colDescription.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescription()));//0008323 Llena la columna de descripcion.
+        colCardId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getCardId()).asObject());//0008323 Llena la columna de los idCard.
+        colTransactionDate.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getPurchaseDate()));//0008323 Llena la columna de las fechas de transaccion.
     }
 
-    private void loadTransactionsFromDatabase() {
-        ObservableList<Transaction>transactions = FXCollections.observableArrayList();
-        String query = "SELECT id_transaction, money_amount, description, id_card, transaction_date FROM transaction";
+    private void loadTransactionsFromDatabase() {//0008323 Metodo para cargar transacciones desde la base de datos.
+        ObservableList<Transaction>transactions = FXCollections.observableArrayList();//00080323 Lista observable de JavaFX, para cambiar automaticamente los registros del table view.
+        String query = "SELECT id_transaction, money_amount, description, id_card, transaction_date FROM transaction";//00080323 Consulta para obtener transacciones de la bD.
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbBank", "root", "apolo2004");//00080323 Conexion a bD.
+            Statement st = conn.createStatement();//00080323 Statement de sql
+            ResultSet rs = st.executeQuery(query);//00080323 Conjunto de resultados
 
-            while (rs.next()) {
-                int id = rs.getInt("id_transaction");
-                double moneyAmount = rs.getDouble("money_amount");
-                String description = rs.getString("description");
-                int cardId = rs.getInt("id_card");
-                LocalDate transactionDate = rs.getDate("transaction_date").toLocalDate();
+            while (rs.next()) {//00080323 Iteramos sobre el conjunto de resultados.
+                int id = rs.getInt("id_transaction");//00080323 Obtenemos el id de transacción del query.
+                double moneyAmount = rs.getDouble("money_amount");//00080323 obtenemos el monto del query.
+                String description = rs.getString("description");//00080323 Obtenemos la descripcion del query.
+                int cardId = rs.getInt("id_card");//00080323 Obtenemos el id card del query.
+                LocalDate transactionDate = rs.getDate("transaction_date").toLocalDate();//00080323 Obtenemos la fecha del query.
 
-                transactions.add(new Transaction(id, moneyAmount, description, cardId, transactionDate));
+                transactions.add(new Transaction(id, moneyAmount, description, cardId, transactionDate));//00080323 Añadimos la transaccion a la lista.
             }
 
-            tableView.setItems(transactions);
-        } catch (Exception e) {
-            showErrorAlert(e.getMessage());
+            tableView.setItems(transactions);//00080323 Actualizamos la tV.
+        } catch (Exception e) {//00080323 Manejo de exepción.
+            showErrorAlert(e.getMessage());//00080323 Mostramos el error.
         }
     }
 

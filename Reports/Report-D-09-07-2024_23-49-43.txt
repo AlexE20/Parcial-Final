@@ -1,0 +1,6 @@
+Client: Alex Ramirez
+Purchase count: 3
+Total spent: 250.0
+Client: Enrique Vides
+Purchase count: 2
+Total spent: 98.0

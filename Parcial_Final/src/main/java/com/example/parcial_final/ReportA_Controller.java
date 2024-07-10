@@ -98,7 +98,7 @@ public class ReportA_Controller implements Initializable { //00106123 Implementi
                 transactions.add(new Transaction(purchaseDate, amount, description)); //00106123 Adds a new Transaction to the list using the previous variables as parameters
             }
 
-        }catch (Exception e){ //00106123 Manages the exception in case there is an error
+        }catch (Exception e){ //00106123 manages the exception in case there is an error
             System.out.println(e); //00106123Prints the error
         }
 
@@ -106,9 +106,9 @@ public class ReportA_Controller implements Initializable { //00106123 Implementi
     }
 
     public void generateFile() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
-        LocalDateTime now = LocalDateTime.now();
-        String path = "Reports/";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");//00080323 Formato de la fecha
+        LocalDateTime currentTime = LocalDateTime.now();// fecha actual 00080323
+        String path = "Reports/";//00080323 ruta de la carpeta.
 
         try { // 00106123 se intenta ejecutar el siguiente bloque de codigo
             Files.createDirectories(Paths.get(path)); //00106123 Revisa si la carpeta que se le paso existe, y si no, la crea
@@ -116,16 +116,16 @@ public class ReportA_Controller implements Initializable { //00106123 Implementi
             System.out.println(e); //00106123 se imprime la excepcion
         }
 
-        String fileName = path + "Report-A-" + dtf.format(now) + ".txt";
+        String fileName = path + "Report-A-" + dtf.format(currentTime) + ".txt";
 
-        try (FileWriter writer = new FileWriter(fileName)) {
-            ObservableList<Transaction> reportList = tvTransactions.getItems();
+        try (FileWriter writer = new FileWriter(fileName)) {//00080323 Nos aseguramos en el try catch que el FileWriter se cierre.
+            ObservableList<Transaction> reportList = tvTransactions.getItems();//00080323 Obtenemos la lista de transacciones de la misma tV generada.
 
-            if (reportList.isEmpty()) {
-                writer.write("No data available\n");
+            if (reportList.isEmpty()) {//00080323 Checamos que la lista de reportes generada no este vacia.
+                writer.write("N/A \n");// 00080323 Escribimos N/A si no hay resultados.
             } else {
-                for (Transaction transaction : reportList) {
-                    writer.write("Purchase date: " + transaction.getPurchaseDate() + "\nAmount: " + transaction.getAmount() + "\nDescription: " + transaction.getDescription() + "\n");
+                for (Transaction transaction : reportList) {//00080323 Iteramos sobre la lista.
+                    writer.write("Purchase date: " + transaction.getPurchaseDate() + "\nAmount: " + transaction.getAmount() + "\nDescription: " + transaction.getDescription() + "\n");//00080323 Escribimos los resultados en el txt.
                 }
             }
 
