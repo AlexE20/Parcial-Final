@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Parcial-Final.iml" filepath="$PROJECT_DIR$/.idea/Parcial-Final.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Parcial_Final.iml" filepath="$PROJECT_DIR$/.idea/modules/Parcial_Final.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Parcial_Final.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Parcial_Final.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Parcial_Final.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Parcial_Final.test.iml" />
     </modules>
   </component>
 </project>

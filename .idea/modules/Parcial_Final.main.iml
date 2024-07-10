@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="Parcial_Final:main" external.linked.project.path="$MODULE_DIR$/../../Parcial_Final" external.root.project.path="$MODULE_DIR$/../../Parcial_Final" external.system.id="GRADLE" external.system.module.group="com.example.parcial_final" external.system.module.type="sourceSet" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_17">
+    <output url="file://$MODULE_DIR$/../../Parcial_Final/build/classes/java/main" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../Parcial_Final/src/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../Parcial_Final/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../Parcial_Final/src/main/resources" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-fxml:win:17.0.11" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:17.0.11" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:win:17.0.11" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-media:win:17.0.11" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-swing:win:17.0.11" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:17.0.11" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:win:17.0.11" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:17.0.11" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:win:17.0.11" level="project" />
+    <orderEntry type="library" name="Gradle: mysql:mysql-connector-java:8.0.25" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.protobuf:protobuf-java:3.11.4" level="project" />
+  </component>
+</module>
