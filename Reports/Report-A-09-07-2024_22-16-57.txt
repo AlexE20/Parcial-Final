@@ -1,0 +1,6 @@
+Purchase date: 2024-07-26
+Amount: 500.0
+Description: Purchase at Siman
+Purchase date: 2024-07-09
+Amount: 10.0
+Description: Purchase at Dochos

@@ -1,0 +1,6 @@
+Client: Luigi Bros
+Purchase count: 1
+Total spent: 150.0
+Client: Sonic Comunica
+Purchase count: 1
+Total spent: 75.0
