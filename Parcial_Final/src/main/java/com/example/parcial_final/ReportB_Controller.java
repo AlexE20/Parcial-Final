@@ -99,10 +99,10 @@ public class ReportB_Controller implements Initializable {
         alert.showAndWait();//00009423 Cuando la alerta aparece espera a que el usuario precione el boton:
     }
 
-    public void generateFile() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
-        LocalDateTime now = LocalDateTime.now();
-        String path = "Reports/";
+    public void generateFile() { //00080323 Método para generar archivo txt.
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss"); //00080323 Crea un formateador de fecha y hora con el patrón "dd-MM-yyyy_HH-mm-ss-
+        LocalDateTime now = LocalDateTime.now(); //00080323 Obtiene la fecha y hora actual.
+        String path = "Reports/"; //00080323 Ruta donde se quiere agregar el archivo.
 
         try { // 00106123 se intenta ejecutar el siguiente bloque de codigo
             Files.createDirectories(Paths.get(path)); //00106123 Revisa si la carpeta que se le paso existe, y si no, la crea
@@ -110,21 +110,21 @@ public class ReportB_Controller implements Initializable {
             System.out.println(e); //00106123 se imprime la excepcion
         }
 
-        String fileName = path + "Report-B-" + dtf.format(now) + ".txt";
+        String fileName = path + "Report-B-" + dtf.format(now) + ".txt"; //00080323 Crea el nombre del archivo utilizando la ruta, un prefijo y la fecha y hora formateadas.
 
-        try (FileWriter writer = new FileWriter(fileName)) {
-            ObservableList<Report> reportList = tvReport.getItems();
+        try (FileWriter writer = new FileWriter(fileName)) { //00106123 Try-Catch para asegurar que el FileWriter se cierre automáticamente
+            ObservableList<Report> reportList = tvReport.getItems(); //00106123 Obtiene los Objetos de la ObservalbeList
 
-            if (reportList.isEmpty()) {
-                writer.write("No data available\n");
-            } else {
-                for (Report report : reportList) {
-                    writer.write("Client: " + report.getClientName() + "\nAmount: " + report.getAmountOfMoney() + "\n");
+            if (reportList.isEmpty()) { //00106123 si la lista esta vacia
+                writer.write("No data available\n"); //00106123 Pone que esta vacia
+            } else { //00106123 En caso de que no
+                for (Report report : reportList) { //00106123 Para la lista de reportes
+                    writer.write("Client: " + report.getClientName() + "\nAmount: " + report.getAmountOfMoney() + "\n"); //00106123 Escribe los datos
                 }
             }
 
-        } catch (IOException e) {
-            System.out.println(e);
+        } catch (IOException e) { //00106123 Caputra la expection
+            System.out.println(e); //00106123 Imprime el error
         }
     }
 
