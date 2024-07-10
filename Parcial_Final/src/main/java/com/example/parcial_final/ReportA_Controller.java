@@ -129,22 +129,22 @@ public class ReportA_Controller implements Initializable { //00106123 Implementi
                 }
             }
 
-        } catch (IOException e) {
-            System.out.println(e);
+        } catch (IOException e) { //00106123 Captura la Exception
+            System.out.println(e); //00106123 Imprime un mensaje del error
         }
     }
 
 
     @FXML
-    protected void onReturnbtn_Click(ActionEvent event) throws IOException {
+    protected void onReturnbtn_Click(ActionEvent event) throws IOException { //00080323 Método para retornar a la ventana principal.
         try {
-            root = FXMLLoader.load(getClass().getResource("initial-view.fxml"));
-        } catch (NullPointerException e) {
-            e.printStackTrace();
+            root = FXMLLoader.load(getClass().getResource("initial-view.fxml")); //00080323 Cargamos la pantalla inicial.
+        } catch (NullPointerException e) { //00080323 Manejamos la exepción.
+            e.printStackTrace(); // 00080323 Imprimimos exepción.
         }
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //00080323 Método para  obtener la ventana actual.
+        scene = new Scene(root); // 00080323 Instanciamos una nueva escena.
+        stage.setScene(scene); //00080323 Cambiamos la escena de la ventana.
+        stage.show(); //00080323 Mostramos nueva escena en la ventana.
     }
 }
